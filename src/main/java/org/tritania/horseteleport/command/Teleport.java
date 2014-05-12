@@ -62,6 +62,7 @@ public class Teleport implements CommandExecutor
 			Message.info(sender, command.getUsage());
             return true;
 		}
+		//the person being teleported needs permission not the one giving the command
 		else if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
 		{
 			Player playertwo = Bukkit.getPlayer(args[0]);

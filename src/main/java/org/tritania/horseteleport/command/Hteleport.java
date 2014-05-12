@@ -24,9 +24,20 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Horse;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Vehicle;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.Material;
 
 import org.tritania.horseteleport.HorseTeleport;
 import org.tritania.horseteleport.util.Message;
+
+import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
 public class Hteleport implements CommandExecutor 
@@ -41,13 +52,57 @@ public class Hteleport implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		Player player = (Player) sender;
-		if (player.hasPermission("horseteleport.teleport"))
+		if (args.length < 1) 
+        {
+            Message.info(sender, command.getUsage());
+            return true;
+        }
+		if ( Bukkit.getPlayer(args[0]) == player)
 		{
-			//teleport
+			Message.info(sender, command.getUsage());
+            return true;
+		}
+		//the person being teleported needs permission not the one giving the command
+		else if (Bukkit.getPlayer(args[0]).hasPermission("horseteleport.teleport") && Bukkit.getPlayer(args[0]).getVehicle() != null)
+		{
+			Player playertwo = Bukkit.getPlayer(args[0]);
+			Entity vech = playertwo.getVehicle();
+			
+			Location ptl = player.getLocation();
+			World ptw = player.getWorld();
+			playertwo.teleport(ptl);
+			
+			Horse en = (Horse)vech;
+			Variant vart = en.getVariant();
+			Color col = en.getColor();
+			Style sty = en.getStyle();
+			int dom = en.getDomestication();
+			int life = en.getTicksLived();
+			ItemStack arm = en.getInventory().getArmor();
+			double ju = en.getJumpStrength();
+			double health = en.getMaxHealth();
+			
+			en.remove();
+			
+			en = ptw.spawn(ptl, Horse.class);
+			en.setColor(col);
+			en.setDomestication(dom);
+			en.setVariant(vart);
+			en.setStyle(sty);
+			en.setTicksLived(life);
+			en.setTamed(true);
+			en.getInventory().setSaddle(new ItemStack(Material.SADDLE, 1));
+			en.getInventory().setArmor(arm);
+			en.setJumpStrength(ju);
+			en.setMaxHealth(health);
+			
+			((Horse)en).setPassenger(playertwo);		
 		}
 		else
 		{
-			 Message.info(sender, "You don't have permission for that");
+			Player playertwo = Bukkit.getPlayer(args[0]);
+			Location ptl = player.getLocation();
+			playertwo.teleport(ptl);
 		}
 		return true;
 	}
