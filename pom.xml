@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.tritania.horseteleport</groupId>
-    <artifactId>Chrysus</artifactId>
+    <artifactId>HorseTeleport</artifactId>
     <packaging>jar</packaging>
     <version>0.1.0</version>
     <name>Chrysus</name>
@@ -71,7 +71,6 @@
                 <directory>${project.basedir}/src/main/resources/</directory>
                 <includes>
                     <include>plugin.yml</include>
-                    <include>items.csv</include>
                 </includes>
             </resource>
         </resources>
