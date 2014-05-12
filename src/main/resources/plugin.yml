@@ -3,9 +3,9 @@ version: 1.0
 description: >
   Allows horse teleportation
 author: Tritania
-website: https://github.com/tritania/HorseTeleporter
+website: https://github.com/tritania/HorseTeleport
 
-main: org.tritania.horseteleport.HorseTeleporter
+main: org.tritania.horseteleport.HorseTeleport
 
 commands:
   htpa:

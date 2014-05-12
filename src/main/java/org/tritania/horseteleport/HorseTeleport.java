@@ -43,12 +43,13 @@ public class HorseTeleport extends JavaPlugin
 	
 	public void onEnable()
 	{
-		
 		PluginManager pm;
 		Plugin p;
 		
 		Log.init(getLogger());
 		Message.init(getDescription().getName());
+		
+		pm = getServer().getPluginManager();
 
         getCommand("htpa").setExecutor(new Teleport(this));
         getCommand("htpahere").setExecutor(new Hteleport(this));
