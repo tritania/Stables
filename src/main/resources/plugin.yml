@@ -1,0 +1,18 @@
+name: HorseTeleport
+version: 1.0
+description: >
+  Allows horse teleportation
+author: Tritania
+website: https://github.com/tritania/HorseTeleporter
+
+main: org.tritania.horseteleport.HorseTeleporter
+
+commands:
+  htpa:
+    description: Teleport a player on a horse to you
+    aliases: []
+    usage: /<command> [playername]
+  htpahere:
+    description: Teleport yourself on a horse to someone else
+    aliases: []
+    usage: /<command> [playername]
