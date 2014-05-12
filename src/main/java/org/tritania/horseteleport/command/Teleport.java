@@ -52,7 +52,17 @@ public class Teleport implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		Player player = (Player) sender;
-		if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
+		if (args.length < 1) 
+        {
+            Message.info(sender, command.getUsage());
+            return true;
+        }
+		if ( Bukkit.getPlayer(args[0]) == player)
+		{
+			Message.info(sender, command.getUsage());
+            return true;
+		}
+		else if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
 		{
 			Player playertwo = Bukkit.getPlayer(args[0]);
 			Entity vech = player.getVehicle();
