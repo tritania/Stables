@@ -52,9 +52,9 @@ public class Teleport implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		Player player = (Player) sender;
-		if (player.hasPermission("horseteleport.teleport"))
+		if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
 		{
-			Player playertwo = Bukkit.getPlayer(args[2]);
+			Player playertwo = Bukkit.getPlayer(args[0]);
 			Entity vech = player.getVehicle();
 			
 			Location ptl = playertwo.getLocation();
@@ -89,7 +89,7 @@ public class Teleport implements CommandExecutor
 		}
 		else
 		{
-			Player playertwo = Bukkit.getPlayer(args[2]);
+			Player playertwo = Bukkit.getPlayer(args[0]);
 			Location ptl = playertwo.getLocation();
 			player.teleport(ptl);
 		}
