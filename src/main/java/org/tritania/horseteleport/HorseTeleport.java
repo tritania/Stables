@@ -29,7 +29,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
-
+import org.tritania.horseteleport.util.Log;
+import org.tritania.horseteleport.util.Message;
 import org.tritania.horseteleport.command.*;
 
 public class HorseTeleport extends JavaPlugin
@@ -48,19 +49,10 @@ public class HorseTeleport extends JavaPlugin
 		
 		Log.init(getLogger());
 		Message.init(getDescription().getName());
-		
-		pm = getServer().getPluginManager();
-		config.load();
-		
-		sqlengine = new ChrysusStorage(this);
-        sqlengine.initialize();
-        
-        pm.registerEvents(new ChrysusListener(this), this);
 
         getCommand("htpa").setExecutor(new Teleport(this));
         getCommand("htpahere").setExecutor(new Hteleport(this));
       
-		
 	}
 	
 	public void onDisable() 
@@ -73,4 +65,4 @@ public class HorseTeleport extends JavaPlugin
 
 	}
 	
-	
+}

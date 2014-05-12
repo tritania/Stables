@@ -24,7 +24,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Horse;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Vehicle;
+import org.bukkit.Bukkit;
 
+import org.tritania.horseteleport.HorseTeleport;
+import org.tritania.horseteleport.util.Message;
 /*End Imports*/
 
 public class Teleport implements CommandExecutor 
@@ -41,11 +47,14 @@ public class Teleport implements CommandExecutor
 		Player player = (Player) sender;
 		if (player.hasPermission("horseteleport.teleport"))
 		{
+			Player playertwo = Bukkit.getPlayer(args[2]);
+			Entity vech = playertwo.getVehicle();
+			Vehicle vec = (Vehicle)vech;
 			//teleport
 		}
 		else
 		{
-			 Message.info(sender, "You don't have permission for that");
+			//just teleport player
 		}
 		return true;
 	}

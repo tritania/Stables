@@ -15,38 +15,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.horseteleport.util;
 
-/*Start Imports*/
-import org.bukkit.permissions.PermissibleBase;
+import java.util.logging.Logger;
+import org.bukkit.ChatColor;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
-/*End Imports*/
-
-public class Hteleport implements CommandExecutor 
+public class Log
 {
-	public HorseTeleport ht;
+    public static Logger logger;
 
-    public Hteleport(HorseTeleport ht)
+    public static void init(Logger logger)
     {
-        this.ht = ht;
+        Log.logger = logger;
     }
-    
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
-	{
-		Player player = (Player) sender;
-		if (player.hasPermission("horseteleport.teleport"))
-		{
-			//teleport
-		}
-		else
-		{
-			 Message.info(sender, "You don't have permission for that");
-		}
-		return true;
-	}
+
+    public static void info(String format, Object ... args)
+    {
+        logger.info(format(format, args));
+    }
+
+    public static void warning(String format, Object ... args)
+    {
+        logger.warning(format(format, args));
+    }
+
+    public static void severe(String format, Object ... args)
+    {
+        logger.severe(format(format, args));
+    }
+
+    private static String format(String msg, Object ... args)
+    {
+        return ChatColor.stripColor(String.format(msg, args));
+    }
 }
