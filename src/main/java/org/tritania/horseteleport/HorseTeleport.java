@@ -38,6 +38,7 @@ import org.tritania.horseteleport.command.*;
 public class HorseTeleport extends JavaPlugin
 {
 	public Teleportation moving;
+	public Stables horsehomes;
 	
 	public void onLoad()
 	{
@@ -55,22 +56,27 @@ public class HorseTeleport extends JavaPlugin
 		pm = getServer().getPluginManager();
 		
 		moving = new Teleportation(this);
+		horsehomes = new Stables(this);
+		
+		horsehomes.loadStables();
 
         getCommand("htpa").setExecutor(new Teleport(this));
         getCommand("htpahere").setExecutor(new Hteleport(this));
         getCommand("haccept").setExecutor(new Haccept(this));
         getCommand("hdeny").setExecutor(new Hdeny(this));
+        getCommand("setstable").setExecutor(new SetStable(this));
+        getCommand("stable").setExecutor(new Stable(this));
       
 	}
 	
 	public void onDisable() 
 	{
-
+		horsehomes.offloadStables();
     }
     
 	public void reload()
 	{
-
+		horsehomes.offloadStables();
 	}
 	
 }

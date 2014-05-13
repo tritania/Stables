@@ -50,7 +50,18 @@ public class SetStable implements CommandExecutor
     }
     
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
-	{
-
+	{ 
+		Player player = (Player) sender;
+		if (player.hasPermission("horseteleport.teleport"))
+		{
+			Location stable = player.getLocation();
+			ht.horsehomes.updateStable(player, stable);
+		}
+		
+		else 
+		{
+			Message.info(sender, "You don't have permission for that!");
+		}
+		return true;
 	}
 }
