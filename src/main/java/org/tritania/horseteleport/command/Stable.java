@@ -74,6 +74,7 @@ public class Stable implements CommandExecutor
 				ItemStack arm = horse.getInventory().getArmor();
 				double ju = horse.getJumpStrength();
 				double health = horse.getMaxHealth();
+				String name = horse.getCustomName();
 				
 				horse.remove();
 				
@@ -92,6 +93,8 @@ public class Stable implements CommandExecutor
 				horse.setJumpStrength(ju);
 				horse.setMaxHealth(health);	
 				horse.setAdult();
+				horse.setCustomName(name);
+				horse.setCustomNameVisible(true);
 			}
 			else
 			{

@@ -72,6 +72,7 @@ public class Teleportation
 			ItemStack arm = en.getInventory().getArmor();
 			double ju = en.getJumpStrength();
 			double health = en.getMaxHealth();
+			String name = en.getCustomName();
 			
 			en.remove();
 			
@@ -87,6 +88,8 @@ public class Teleportation
 			en.setJumpStrength(ju);
 			en.setMaxHealth(health);
 			en.setAdult();
+			en.setCustomName(name);
+			en.setCustomNameVisible(true);
 			
 			((Horse)en).setPassenger(two);		
 		}
@@ -116,6 +119,7 @@ public class Teleportation
 			ItemStack arm = en.getInventory().getArmor();
 			double ju = en.getJumpStrength();
 			double health = en.getMaxHealth();
+			String name = en.getCustomName();
 			
 			en.remove();
 			
@@ -131,6 +135,8 @@ public class Teleportation
 			en.setJumpStrength(ju);
 			en.setMaxHealth(health);
 			en.setAdult();
+			en.setCustomName(name);
+			en.setCustomNameVisible(true);
 			
 			((Horse)en).setPassenger(one);		
 		}
