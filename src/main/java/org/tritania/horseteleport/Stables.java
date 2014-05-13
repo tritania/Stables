@@ -54,7 +54,7 @@ import static org.bukkit.entity.Horse.*;
 
 public class Stables implements Serializable
 {
-	public HashMap<UUID, Location> stablelocations = new HashMap<UUID, Location>();
+	public HashMap<UUID, String> stablelocations = new HashMap<UUID, String>();
 	
 	public HorseTeleport ht;
 
@@ -71,7 +71,7 @@ public class Stables implements Serializable
 			FileInputStream fis  = new FileInputStream(data);
 			ObjectInputStream ois= new ObjectInputStream(fis);
 
-			stablelocations = (HashMap<UUID,Location>)ois.readObject();
+			stablelocations = (HashMap<UUID,String>)ois.readObject();
 
 			ois.close();
 			fis.close();
@@ -109,13 +109,16 @@ public class Stables implements Serializable
 		{
 			stablelocations.remove(playerId);
 		}
-		stablelocations.put(playerId, location);
+		String local = location.getWorld().getName() + "," + String.valueOf(location.getX()) + "," + String.valueOf(location.getY()) + "," + String.valueOf(location.getZ());
+		stablelocations.put(playerId, local);
 	}
 	
 	public Location getStable(Player player)
 	{
 		UUID playerId = player.getUniqueId();
-		return stablelocations.get(playerId);
+		String[] ld = stablelocations.get(playerId).split(",");
+		Location location = new Location(Bukkit.getWorld(ld[0]),Double.parseDouble(ld[1]),Double.parseDouble(ld[2]),Double.parseDouble(ld[3]));
+		return location;
 	}
 	
 	public boolean hasStable(Player player)
