@@ -91,6 +91,7 @@ public class Stable implements CommandExecutor
 				horse.getInventory().setArmor(arm);
 				horse.setJumpStrength(ju);
 				horse.setMaxHealth(health);	
+				horse.setAdult();
 			}
 			else
 			{

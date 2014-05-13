@@ -86,6 +86,7 @@ public class Teleportation
 			en.getInventory().setArmor(arm);
 			en.setJumpStrength(ju);
 			en.setMaxHealth(health);
+			en.setAdult();
 			
 			((Horse)en).setPassenger(two);		
 		}
@@ -129,6 +130,7 @@ public class Teleportation
 			en.getInventory().setArmor(arm);
 			en.setJumpStrength(ju);
 			en.setMaxHealth(health);
+			en.setAdult();
 			
 			((Horse)en).setPassenger(one);		
 		}
