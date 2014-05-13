@@ -33,6 +33,7 @@ import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Material;
+import org.bukkit.Chunk;
 
 import org.tritania.horseteleport.HorseTeleport;
 import org.tritania.horseteleport.util.Message;
@@ -60,6 +61,8 @@ public class Stable implements CommandExecutor
 				Horse horse = (Horse) vech;
 				vech.eject();
 				
+				Message.info(sender, "Returning your horse home");
+				
 				Location location = ht.horsehomes.getStable(player);
 				World world = location.getWorld();
 				
@@ -73,6 +76,9 @@ public class Stable implements CommandExecutor
 				double health = horse.getMaxHealth();
 				
 				horse.remove();
+				
+				Chunk stch = location.getChunk();
+				stch.load();
 				
 				horse = world.spawn(location, Horse.class);
 				horse.setColor(col);
