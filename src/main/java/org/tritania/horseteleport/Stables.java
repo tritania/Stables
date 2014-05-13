@@ -108,6 +108,19 @@ public class Stables
 		}
 		stablelocations.put(player, location);
 	}
+	
+	public Location getStable(Player player)
+	{
+		return stablelocations.get(player);
+	}
+	
+	public boolean hasStable(Player player)
+	{
+		if(stablelocations.containsKey(player))
+			return true;
+		else
+			return false;
+	}
     
 
 }

@@ -2,17 +2,17 @@
  * Copyright 2014 Erik Wilson <erikwilson@magnorum.com>
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * it under the terms of the GNU Ghorseeral Public Lichorsese as published by
+ * the Free Software Foundation, either version 3 of the Lichorsese, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * but WITHOUT ANY WARRANTY; without evhorse the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Ghorseeral Public Lichorsese for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Ghorseeral Public Lichorsese
+ * along with this program.  If not, see <http://www.gnu.org/lichorseses/>.
  */
 
 package org.tritania.horseteleport.command;
@@ -38,7 +38,7 @@ import org.tritania.horseteleport.HorseTeleport;
 import org.tritania.horseteleport.util.Message;
 
 import static org.bukkit.entity.Horse.*;
-/*End Imports*/
+/*horsed Imports*/
 
 public class Stable implements CommandExecutor 
 {
@@ -51,6 +51,54 @@ public class Stable implements CommandExecutor
     
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
+		Player player = (Player) sender;
+		if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
+		{
+			if(ht.horsehomes.hasStable(player))
+			{
+				Entity vech = player.getVehicle();
+				Horse horse = (Horse) vech;
+				vech.eject();
+				
+				Location location = ht.horsehomes.getStable(player);
+				World world = location.getWorld();
+				
+				Variant vart = horse.getVariant();
+				Color col = horse.getColor();
+				Style sty = horse.getStyle();
+				int dom = horse.getDomestication();
+				int life = horse.getTicksLived();
+				ItemStack arm = horse.getInventory().getArmor();
+				double ju = horse.getJumpStrength();
+				double health = horse.getMaxHealth();
+				
+				horse.remove();
+				
+				horse = world.spawn(location, Horse.class);
+				horse.setColor(col);
+				horse.setDomestication(dom);
+				horse.setVariant(vart);
+				horse.setStyle(sty);
+				horse.setTicksLived(life);
+				horse.setTamed(true);
+				horse.getInventory().setSaddle(new ItemStack(Material.SADDLE, 1));
+				horse.getInventory().setArmor(arm);
+				horse.setJumpStrength(ju);
+				horse.setMaxHealth(health);	
+			}
+			else
+			{
+				Message.info(sender, "You don't have a stable set");
+			}
+		}
+		else if (player.hasPermission("horseteleport.teleport") && player.getVehicle() == null)
+		{
+			Message.info(sender, "You need to be on a horse for this to work!");
+		}
+		else 
+		{
+			Message.info(sender, "You don't have permission for that!");
+		}
 		return true;
 	}
 }

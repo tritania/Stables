@@ -24,7 +24,7 @@ commands:
     description: deny a teleport
     aliases: []
     usage: /<command> 
-  setsable:
+  setstable:
     description: sets a stable for your horse
     aliases: []
     usage: /<command> 
