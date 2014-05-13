@@ -39,10 +39,11 @@ public class HorseTeleport extends JavaPlugin
 {
 	public Teleportation moving;
 	public Stables horsehomes;
+	public String datalocal;
 	
 	public void onLoad()
 	{
-		
+		saveResource("readme.txt", true); 
 	}
 	
 	public void onEnable()
@@ -54,6 +55,8 @@ public class HorseTeleport extends JavaPlugin
 		Message.init(getDescription().getName());
 		
 		pm = getServer().getPluginManager();
+		
+		datalocal = getDataFolder().getAbsolutePath();
 		
 		moving = new Teleportation(this);
 		horsehomes = new Stables(this);
@@ -67,6 +70,7 @@ public class HorseTeleport extends JavaPlugin
         getCommand("setstable").setExecutor(new SetStable(this));
         getCommand("stable").setExecutor(new Stable(this));
       
+		
 	}
 	
 	public void onDisable() 

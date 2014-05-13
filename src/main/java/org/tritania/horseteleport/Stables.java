@@ -67,7 +67,7 @@ public class Stables implements Serializable
     {
 		try
 		{
-			File data            = new File("stables.data");
+			File data            = new File(ht.datalocal + "/stables.data");
 			FileInputStream fis  = new FileInputStream(data);
 			ObjectInputStream ois= new ObjectInputStream(fis);
 
@@ -86,7 +86,7 @@ public class Stables implements Serializable
 	{
 		try
 		{
-			File data =  new File("stables.data");
+			File data =  new File(ht.datalocal + "/stables.data");
 			FileOutputStream fos   = new FileOutputStream(data);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			
