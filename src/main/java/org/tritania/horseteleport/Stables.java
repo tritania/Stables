@@ -27,6 +27,8 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.UUID;
 
 import org.bukkit.permissions.PermissibleBase;
 import org.bukkit.command.Command;
@@ -50,9 +52,9 @@ import org.tritania.horseteleport.util.Log;
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class Stables
+public class Stables implements Serializable
 {
-	public HashMap<Player, Location> stablelocations = new HashMap<Player, Location>();
+	public HashMap<UUID, Location> stablelocations = new HashMap<UUID, Location>();
 	
 	public HorseTeleport ht;
 
@@ -69,7 +71,7 @@ public class Stables
 			FileInputStream fis  = new FileInputStream(data);
 			ObjectInputStream ois= new ObjectInputStream(fis);
 
-			stablelocations = (HashMap<Player,Location>)ois.readObject();
+			stablelocations = (HashMap<UUID,Location>)ois.readObject();
 
 			ois.close();
 			fis.close();
@@ -102,21 +104,24 @@ public class Stables
 	
 	public void updateStable(Player player, Location location)
 	{
-		if(stablelocations.containsKey(player))
+		UUID playerId = player.getUniqueId();
+		if(stablelocations.containsKey(playerId))
 		{
-			stablelocations.remove(player);
+			stablelocations.remove(playerId);
 		}
-		stablelocations.put(player, location);
+		stablelocations.put(playerId, location);
 	}
 	
 	public Location getStable(Player player)
 	{
-		return stablelocations.get(player);
+		UUID playerId = player.getUniqueId();
+		return stablelocations.get(playerId);
 	}
 	
 	public boolean hasStable(Player player)
 	{
-		if(stablelocations.containsKey(player))
+		UUID playerId = player.getUniqueId();
+		if(stablelocations.containsKey(playerId))
 			return true;
 		else
 			return false;
