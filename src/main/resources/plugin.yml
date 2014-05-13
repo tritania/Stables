@@ -16,3 +16,12 @@ commands:
     description: Teleport yourself on a horse to someone else
     aliases: []
     usage: /<command> [playername]
+  haccept:
+    description: accept a teleport
+    aliases: []
+    usage: /<command> 
+  hdeny:
+    description: deny a teleport
+    aliases: []
+    usage: /<command> 
+

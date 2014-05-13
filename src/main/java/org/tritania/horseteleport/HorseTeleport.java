@@ -29,12 +29,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+
+import org.tritania.horseteleport.Teleportation;
 import org.tritania.horseteleport.util.Log;
 import org.tritania.horseteleport.util.Message;
 import org.tritania.horseteleport.command.*;
 
 public class HorseTeleport extends JavaPlugin
 {
+	public Teleportation moving;
 	
 	public void onLoad()
 	{
@@ -50,9 +53,13 @@ public class HorseTeleport extends JavaPlugin
 		Message.init(getDescription().getName());
 		
 		pm = getServer().getPluginManager();
+		
+		moving = new Teleportation(this);
 
         getCommand("htpa").setExecutor(new Teleport(this));
         getCommand("htpahere").setExecutor(new Hteleport(this));
+        getCommand("haccept").setExecutor(new Haccept(this));
+        getCommand("hdeny").setExecutor(new Hdeny(this));
       
 	}
 	

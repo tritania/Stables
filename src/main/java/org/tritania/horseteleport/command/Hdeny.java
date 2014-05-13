@@ -40,11 +40,11 @@ import org.tritania.horseteleport.util.Message;
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class Hteleport implements CommandExecutor 
+public class Hdeny implements CommandExecutor 
 {
 	public HorseTeleport ht;
 
-    public Hteleport(HorseTeleport ht)
+    public Hdeny(HorseTeleport ht)
     {
         this.ht = ht;
     }
@@ -52,22 +52,7 @@ public class Hteleport implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		Player player = (Player) sender;
-		if (args.length < 1) 
-        {
-            Message.info(sender, command.getUsage());
-            return true;
-        }
-		if ( Bukkit.getPlayer(args[0]) == player)
-		{
-			Message.info(sender, command.getUsage());
-            return true;
-		}
-		//the person being teleported needs permission not the one giving the command
-		else if (Bukkit.getPlayer(args[0]).hasPermission("horseteleport.teleport")) //tpahere
-		{
-			ht.moving.issueRequestHere(player, Bukkit.getPlayer(args[0])); 
-		}
-
+		ht.moving.denied(player);
 		return true;
 	}
 }

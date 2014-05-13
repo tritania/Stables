@@ -63,47 +63,11 @@ public class Teleport implements CommandExecutor
             return true;
 		}
 		//the person being teleported needs permission not the one giving the command
-		else if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
+		else if (player.hasPermission("horseteleport.teleport"))
 		{
-			Player playertwo = Bukkit.getPlayer(args[0]);
-			Entity vech = player.getVehicle();
-			
-			Location ptl = playertwo.getLocation();
-			World ptw = playertwo.getWorld();
-			player.teleport(ptl);
-			
-			Horse en = (Horse)vech;
-			Variant vart = en.getVariant();
-			Color col = en.getColor();
-			Style sty = en.getStyle();
-			int dom = en.getDomestication();
-			int life = en.getTicksLived();
-			ItemStack arm = en.getInventory().getArmor();
-			double ju = en.getJumpStrength();
-			double health = en.getMaxHealth();
-			
-			en.remove();
-			
-			en = ptw.spawn(ptl, Horse.class);
-			en.setColor(col);
-			en.setDomestication(dom);
-			en.setVariant(vart);
-			en.setStyle(sty);
-			en.setTicksLived(life);
-			en.setTamed(true);
-			en.getInventory().setSaddle(new ItemStack(Material.SADDLE, 1));
-			en.getInventory().setArmor(arm);
-			en.setJumpStrength(ju);
-			en.setMaxHealth(health);
-			
-			((Horse)en).setPassenger(player);		
+			ht.moving.issueRequestThere(player, Bukkit.getPlayer(args[0])); 
 		}
-		else
-		{
-			Player playertwo = Bukkit.getPlayer(args[0]);
-			Location ptl = playertwo.getLocation();
-			player.teleport(ptl);
-		}
+
 		return true;
 	}
 }
