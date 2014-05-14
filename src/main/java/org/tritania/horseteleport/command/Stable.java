@@ -94,7 +94,10 @@ public class Stable implements CommandExecutor
 				horse.setMaxHealth(health);	
 				horse.setAdult();
 				horse.setCustomName(name);
-				horse.setCustomNameVisible(true);
+				if (name.equals("Horse")
+					horse.setCustomNameVisible(false);
+				else
+					horse.setCustomNameVisible(true);
 			}
 			else
 			{
