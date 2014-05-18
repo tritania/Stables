@@ -32,4 +32,8 @@ commands:
     description: teleports your horse back to its stable
     aliases: []
     usage: /<command> 
+  hstat:
+    description: gives you information about your horse
+    aliases: []
+    usage: /<command> 
 

@@ -39,6 +39,13 @@ import org.tritania.horseteleport.HorseTeleport;
 import org.tritania.horseteleport.util.Message;
 
 import static org.bukkit.entity.Horse.*;
+
+import net.minecraft.server.v1_7_R3.AttributeInstance;
+import net.minecraft.server.v1_7_R3.AttributeModifier;
+import net.minecraft.server.v1_7_R3.EntityLiving;
+import net.minecraft.server.v1_7_R3.EntityInsentient;
+import net.minecraft.server.v1_7_R3.GenericAttributes;
+import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
 /*End Imports*/
 
 public class Teleportation 
@@ -73,6 +80,8 @@ public class Teleportation
 			double ju = en.getJumpStrength();
 			double health = en.getMaxHealth();
 			String name = en.getCustomName();
+			AttributeInstance preattributes = ((EntityInsentient)((CraftLivingEntity)en).getHandle()).getAttributeInstance(GenericAttributes.d);
+			double speed = preattributes.getValue();
 			
 			en.remove();
 			
@@ -89,7 +98,13 @@ public class Teleportation
 			en.setMaxHealth(health);
 			en.setAdult();
 			en.setCustomName(name);
-			en.setCustomNameVisible(true);
+			if (name.equals("Horse"))
+				en.setCustomNameVisible(false);
+			else
+				en.setCustomNameVisible(true);
+			
+			AttributeInstance postattributes = ((EntityInsentient)((CraftLivingEntity)en).getHandle()).getAttributeInstance(GenericAttributes.d);
+			postattributes.setValue(speed);
 			
 			((Horse)en).setPassenger(two);		
 		}
@@ -121,6 +136,9 @@ public class Teleportation
 			double health = en.getMaxHealth();
 			String name = en.getCustomName();
 			
+			AttributeInstance preattributes = ((EntityInsentient)((CraftLivingEntity)en).getHandle()).getAttributeInstance(GenericAttributes.d);
+			double speed = preattributes.getValue();
+			
 			en.remove();
 			
 			en = ptw.spawn(ptl, Horse.class);
@@ -136,7 +154,13 @@ public class Teleportation
 			en.setMaxHealth(health);
 			en.setAdult();
 			en.setCustomName(name);
-			en.setCustomNameVisible(true);
+			if (name.equals("Horse"))
+				en.setCustomNameVisible(false);
+			else
+				en.setCustomNameVisible(true);
+			
+			AttributeInstance postattributes = ((EntityInsentient)((CraftLivingEntity)en).getHandle()).getAttributeInstance(GenericAttributes.d);
+			postattributes.setValue(speed);
 			
 			((Horse)en).setPassenger(one);		
 		}
