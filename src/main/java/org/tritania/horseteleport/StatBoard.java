@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.horseteleport;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -52,39 +52,55 @@ import net.minecraft.server.v1_7_R3.EntityLiving;
 import net.minecraft.server.v1_7_R3.EntityInsentient;
 import net.minecraft.server.v1_7_R3.GenericAttributes;
 import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
-/*End Imports*/
 
-public class Hstat implements CommandExecutor 
+public class StatBoard
 {
+	
 	public HorseTeleport ht;
 
-    public Hstat(HorseTeleport ht)
+    public StatBoard(HorseTeleport ht)
     {
         this.ht = ht;
     }
     
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+    	
+	public void setBoard(Player player)
 	{
-		Player player = (Player) sender;
-		if (player.getVehicle() != null && player.hasPermission("horseteleport.teleport"))
-		{
-			if (args.length < 1)
-			{
-				ht.stats.setBoard(player);
-			}
-			else if (args[0].equals("clear"))
-			{
-				System.out.println("bloop");
-				ht.stats.removeBoard(player);
-			} 
-		}
-		else
-		{
-			Message.info(sender, "You need to be on a horse for this to work!");
-		}
-
+		Entity en = player.getVehicle();
+		Horse horse = (Horse) en;
 		
-		return true;
+		ScoreboardManager mang = Bukkit.getScoreboardManager();
+		Scoreboard board = mang.getNewScoreboard();
+	
+		Objective objective = board.registerNewObjective("Stats", "dummy");
+		
+		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+		objective.setDisplayName(ChatColor.BLUE +  "Horse Stats");			
+		
+		Score style = objective.getScore(Bukkit.getOfflinePlayer("Style " + horse.getStyle().toString()));
+		Score color = objective.getScore(Bukkit.getOfflinePlayer("Color " + horse.getColor().toString()));
+		Score jump = objective.getScore(Bukkit.getOfflinePlayer("Jump Strength "));
+		Score speed = objective.getScore(Bukkit.getOfflinePlayer("Speed "));
+		
+		AttributeInstance attributes = ((EntityInsentient)((CraftLivingEntity)horse).getHandle()).getAttributeInstance(GenericAttributes.d);
+		double hspeed = attributes.getValue();
+		int hspeedt = (int) (hspeed * 100);
+		
+		style.setScore(1);
+		color.setScore(1);
+		jump.setScore((int) (horse.getJumpStrength() * 10));
+		speed.setScore(hspeedt);
+		
+		player.setScoreboard(board);
 	}
-}
+	
+	public void removeBoard(Player player)
+	{
+		ScoreboardManager manger = Bukkit.getScoreboardManager();
+		Scoreboard board = manger.getNewScoreboard();
+		
+		player.setScoreboard(board);
+	}
 
+}
+   

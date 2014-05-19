@@ -30,6 +30,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
+import org.tritania.horseteleport.StatBoard;
 import org.tritania.horseteleport.Teleportation;
 import org.tritania.horseteleport.util.Log;
 import org.tritania.horseteleport.util.Message;
@@ -39,6 +40,7 @@ public class HorseTeleport extends JavaPlugin
 {
 	public Teleportation moving;
 	public Stables horsehomes;
+	public StatBoard stats;
 	public String datalocal;
 	
 	public void onLoad()
@@ -58,8 +60,11 @@ public class HorseTeleport extends JavaPlugin
 		
 		datalocal = getDataFolder().getAbsolutePath();
 		
+		pm.registerEvents(new VehicleListener(this), this);
+		
 		moving = new Teleportation(this);
 		horsehomes = new Stables(this);
+		stats = new StatBoard(this);
 		
 		horsehomes.loadStables();
 

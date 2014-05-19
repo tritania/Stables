@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.horseteleport;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -26,20 +26,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Vehicle;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.Material;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.ChatColor;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.vehicle.VehicleExitEvent;
+import org.bukkit.plugin.PluginManager;
 
 import org.tritania.horseteleport.HorseTeleport;
 import org.tritania.horseteleport.util.Message;
@@ -52,39 +49,34 @@ import net.minecraft.server.v1_7_R3.EntityLiving;
 import net.minecraft.server.v1_7_R3.EntityInsentient;
 import net.minecraft.server.v1_7_R3.GenericAttributes;
 import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
-/*End Imports*/
 
-public class Hstat implements CommandExecutor 
+public class VehicleListener implements Listener 
 {
+	
 	public HorseTeleport ht;
 
-    public Hstat(HorseTeleport ht)
+    public VehicleListener(HorseTeleport ht)
     {
         this.ht = ht;
     }
-    
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+	
+	public void register()
 	{
-		Player player = (Player) sender;
-		if (player.getVehicle() != null && player.hasPermission("horseteleport.teleport"))
-		{
-			if (args.length < 1)
-			{
-				ht.stats.setBoard(player);
-			}
-			else if (args[0].equals("clear"))
-			{
-				System.out.println("bloop");
-				ht.stats.removeBoard(player);
-			} 
-		}
-		else
-		{
-			Message.info(sender, "You need to be on a horse for this to work!");
-		}
-
+		PluginManager manager;
 		
-		return true;
+		manager = ht.getServer().getPluginManager();
+		manager.registerEvents(this, ht);
+	} 
+	
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onVehicleExit(VehicleExitEvent event) 
+	{
+		LivingEntity pliv = event.getExited();
+		Player player = (Player) pliv;
+		ht.stats.removeBoard(player);
 	}
+
 }
+   
 
