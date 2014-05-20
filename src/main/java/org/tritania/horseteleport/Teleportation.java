@@ -77,6 +77,7 @@ public class Teleportation
 			int dom = en.getDomestication();
 			int life = en.getTicksLived();
 			ItemStack arm = en.getInventory().getArmor();
+			ItemStack saddle = en.getInventory().getSaddle();
 			double ju = en.getJumpStrength();
 			double health = en.getMaxHealth();
 			String name = en.getCustomName();
@@ -92,7 +93,7 @@ public class Teleportation
 			en.setStyle(sty);
 			en.setTicksLived(life);
 			en.setTamed(true);
-			en.getInventory().setSaddle(new ItemStack(Material.SADDLE, 1));
+			en.getInventory().setSaddle(saddle);
 			en.getInventory().setArmor(arm);
 			en.setJumpStrength(ju);
 			en.setMaxHealth(health);
@@ -132,6 +133,7 @@ public class Teleportation
 			int dom = en.getDomestication();
 			int life = en.getTicksLived();
 			ItemStack arm = en.getInventory().getArmor();
+			ItemStack saddle = en.getInventory().getSaddle();
 			double ju = en.getJumpStrength();
 			double health = en.getMaxHealth();
 			String name = en.getCustomName();
@@ -148,7 +150,7 @@ public class Teleportation
 			en.setStyle(sty);
 			en.setTicksLived(life);
 			en.setTamed(true);
-			en.getInventory().setSaddle(new ItemStack(Material.SADDLE, 1));
+			en.getInventory().setSaddle(saddle);
 			en.getInventory().setArmor(arm);
 			en.setJumpStrength(ju);
 			en.setMaxHealth(health);

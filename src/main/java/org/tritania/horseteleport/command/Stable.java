@@ -79,6 +79,7 @@ public class Stable implements CommandExecutor
 				int dom = horse.getDomestication();
 				int life = horse.getTicksLived();
 				ItemStack arm = horse.getInventory().getArmor();
+				ItemStack saddle = horse.getInventory().getSaddle();
 				double ju = horse.getJumpStrength();
 				double health = horse.getMaxHealth();
 				String name = horse.getCustomName();
@@ -98,7 +99,7 @@ public class Stable implements CommandExecutor
 				horse.setStyle(sty);
 				horse.setTicksLived(life);
 				horse.setTamed(true);
-				horse.getInventory().setSaddle(new ItemStack(Material.SADDLE, 1));
+				horse.getInventory().setSaddle(saddle);
 				horse.getInventory().setArmor(arm);
 				horse.setJumpStrength(ju);
 				horse.setMaxHealth(health);	
