@@ -109,7 +109,7 @@ public class Stable implements CommandExecutor
 				AttributeInstance postattributes = ((EntityInsentient)((CraftLivingEntity)horse).getHandle()).getAttributeInstance(GenericAttributes.d);
 				postattributes.setValue(speed);
 				
-				if (name != null | name.equals("Horse"))
+				if (name == null || name.equals("Horse"))
 					horse.setCustomNameVisible(false);
 				else
 					horse.setCustomNameVisible(true);
