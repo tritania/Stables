@@ -176,7 +176,7 @@ public class Teleportation
 	public void issueRequestThere(Player one, Player two) //one wants to go to two
 	{
 		CommandSender stwo = (CommandSender) two;
-		Message.info(stwo, one.getPlayerListName() + "Wants to teleport to you, type /haccept to accept or /hdeny to deny");
+		Message.info(stwo, one.getPlayerListName() + " Wants to teleport to you, type /haccept to accept or /hdeny to deny");
 		type.put(two, 0);
 		destination.put(two, one);
 	}
@@ -184,7 +184,7 @@ public class Teleportation
 	public void issueRequestHere(Player one, Player two) //one wants two to come to one
 	{
 		CommandSender stwo = (CommandSender) two;
-		Message.info(stwo, one.getPlayerListName() + "Wants you to teleport to them, type /haccept to accept or /hdeny to deny");
+		Message.info(stwo, one.getPlayerListName() + " Wants you to teleport to them, type /haccept to accept or /hdeny to deny");
 		type.put(two, 1);
 		destination.put(two, one);
 	}
