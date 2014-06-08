@@ -34,6 +34,7 @@ import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Material;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import org.tritania.horseteleport.HorseTeleport;
 import org.tritania.horseteleport.util.Message;
@@ -179,6 +180,7 @@ public class Teleportation
 		Message.info(stwo, one.getPlayerListName() + " Wants to teleport to you, type /haccept to accept or /hdeny to deny");
 		type.put(two, 0);
 		destination.put(two, one);
+		teleportTimer(one, two);
 	}
 	
 	public void issueRequestHere(Player one, Player two) //one wants two to come to one
@@ -187,6 +189,23 @@ public class Teleportation
 		Message.info(stwo, one.getPlayerListName() + " Wants you to teleport to them, type /haccept to accept or /hdeny to deny");
 		type.put(two, 1);
 		destination.put(two, one);
+		teleportTimer(one, two);
+	}
+	
+	public void teleportTimer(final Player one, final Player two)
+	{
+		new BukkitRunnable()
+		{
+			@Override
+			public void run()
+			{
+				CommandSender sone = (CommandSender) one;
+				Message.info(sone, "Your teleport request expired");
+				CommandSender stwo = (CommandSender) two;
+				Message.info(stwo, "Teleport request expired.");
+				denied(two);
+			}
+		}.runTaskLater(ht, 1200L);
 	}
 	
 	public void accepted(Player player)
