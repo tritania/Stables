@@ -54,11 +54,18 @@ public class SetStable implements CommandExecutor
 		Player player = (Player) sender;
 		if (player.hasPermission("horseteleport.teleport"))
 		{
-			Location stable = player.getLocation();
-			ht.horsehomes.updateStable(player, stable);
-			Message.info(sender, "Stable set!");
+			if (args.length == 1)
+			{
+				ht.horsehomes.hasStable(player);
+				Location stable = player.getLocation();
+				ht.horsehomes.updateStable(player, stable, args[0]);
+				Message.info(sender, "Stable set!");
+			}
+			else 
+			{
+				Message.info(sender, command.getUsage());
+			}
 		}
-		
 		else 
 		{
 			Message.info(sender, "You don't have permission for that!");

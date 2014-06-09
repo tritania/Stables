@@ -73,7 +73,7 @@ public class HorseTeleport extends JavaPlugin
         getCommand("haccept").setExecutor(new Haccept(this));
         getCommand("hdeny").setExecutor(new Hdeny(this));
         getCommand("setstable").setExecutor(new SetStable(this));
-        getCommand("stable").setExecutor(new Stable(this));
+        getCommand("stable").setExecutor(new CStable(this));
         getCommand("hstat").setExecutor(new Hstat(this));
       
 		

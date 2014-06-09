@@ -48,15 +48,16 @@ import org.bukkit.Material;
 import org.tritania.horseteleport.HorseTeleport;
 import org.tritania.horseteleport.util.Message;
 import org.tritania.horseteleport.util.Log;
+import org.tritania.horseteleport.Stable;
 
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
 public class Stables implements Serializable
 {
-	public HashMap<UUID, String> stablelocations = new HashMap<UUID, String>();
-	
-	public HorseTeleport ht;
+    public HashMap<UUID, Stable> stablelocations = new HashMap<UUID, Stable>();
+    
+    public HorseTeleport ht;
 
     public Stables(HorseTeleport ht)
     {
@@ -65,71 +66,80 @@ public class Stables implements Serializable
     
     public void loadStables() 
     {
-		try
-		{
-			File data            = new File(ht.datalocal + "/stables.data");
-			FileInputStream fis  = new FileInputStream(data);
-			ObjectInputStream ois= new ObjectInputStream(fis);
+        try
+        {
+            File data            = new File(ht.datalocal + "/stables.data");
+            FileInputStream fis  = new FileInputStream(data);
+            ObjectInputStream ois= new ObjectInputStream(fis);
 
-			stablelocations = (HashMap<UUID,String>)ois.readObject();
+            stablelocations = (HashMap<UUID,Stable>)ois.readObject();
 
-			ois.close();
-			fis.close();
-		}
-		catch(Exception ex)
-		{
-			Log.severe(" " + ex.getMessage());
-		}
-	}
-	
-	public void offloadStables()
-	{
-		try
-		{
-			File data =  new File(ht.datalocal + "/stables.data");
-			FileOutputStream fos   = new FileOutputStream(data);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			
-			oos.writeObject(stablelocations);
-			oos.flush();
-			oos.close();
-			fos.close();
-			
-		}
-		catch(Exception ex)
-		{
-			Log.severe("  " + ex.getMessage());
-		}
-	}
-	
-	public void updateStable(Player player, Location location)
-	{
-		UUID playerId = player.getUniqueId();
-		if(stablelocations.containsKey(playerId))
-		{
-			stablelocations.remove(playerId);
-		}
-		String local = location.getWorld().getName() + "," + String.valueOf(location.getX()) + "," + String.valueOf(location.getY()) + "," + String.valueOf(location.getZ());
-		stablelocations.put(playerId, local);
-	}
-	
-	public Location getStable(Player player)
-	{
-		UUID playerId = player.getUniqueId();
-		String[] ld = stablelocations.get(playerId).split(",");
-		Location location = new Location(Bukkit.getWorld(ld[0]),Double.parseDouble(ld[1]),Double.parseDouble(ld[2]),Double.parseDouble(ld[3]));
-		return location;
-	}
-	
-	public boolean hasStable(Player player)
-	{
-		UUID playerId = player.getUniqueId();
-		if(stablelocations.containsKey(playerId))
-			return true;
-		else
-			return false;
-	}
+            ois.close();
+            fis.close();
+        }
+        catch(Exception ex)
+        {
+            Log.severe(" " + ex.getMessage());
+        }
+    }
     
-
+    public void offloadStables()
+    {
+        try
+        {
+            File data =  new File(ht.datalocal + "/stables.data");
+            FileOutputStream fos   = new FileOutputStream(data);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            oos.writeObject(stablelocations);
+            oos.flush();
+            oos.close();
+            fos.close();
+            
+        }
+        catch(Exception ex)
+        {
+            Log.severe("  " + ex.getMessage());
+        }
+    }
+    
+    public void updateStable(Player player, Location location, String name)
+    {
+        UUID playerId = player.getUniqueId();
+        String local = location.getWorld().getName() + "," + String.valueOf(location.getX()) + "," + String.valueOf(location.getY()) + "," + String.valueOf(location.getZ());
+        Stable stable = stablelocations.get(playerId);
+        stable.addStable(name, local);
+    }
+    
+    public Location getStable(Player player, String name)
+    {
+        UUID playerId = player.getUniqueId();
+        Stable stable = stablelocations.get(playerId);
+        String[] ld = stable.getLocation(name).split(",");
+        Location location = new Location(Bukkit.getWorld(ld[0]),Double.parseDouble(ld[1]),Double.parseDouble(ld[2]),Double.parseDouble(ld[3]));
+        return location;
+    }
+    
+    public boolean check(Player player, String name)
+    {
+        UUID playerId = player.getUniqueId();
+        Stable stable = stablelocations.get(playerId);
+        return stable.checkStable(name);
+    }
+    
+    public boolean hasStable(Player player)
+    {
+        UUID playerId = player.getUniqueId();
+        if(stablelocations.containsKey(playerId))
+        {
+            return true;
+        }
+        else
+        {
+            Stable stable = new Stable();
+            stablelocations.put(playerId, stable);
+            return false;
+        }
+    }
 }
    
