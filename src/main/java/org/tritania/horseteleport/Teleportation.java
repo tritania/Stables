@@ -199,11 +199,12 @@ public class Teleportation
 			@Override
 			public void run()
 			{
-				CommandSender sone = (CommandSender) one;
-				Message.info(sone, "Your teleport request expired");
-				CommandSender stwo = (CommandSender) two;
-				Message.info(stwo, "Teleport request expired.");
-				denied(two);
+				if (destination.containsKey(two))
+				{
+					Message.info(one, "Your teleport request expired");
+					Message.info(two, "Teleport request expired.");
+					denied(two);
+				}
 			}
 		}.runTaskLater(ht, 1200L);
 	}
