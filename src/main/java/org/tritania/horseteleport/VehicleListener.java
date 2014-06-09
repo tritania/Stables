@@ -73,8 +73,11 @@ public class VehicleListener implements Listener
     public void onVehicleExit(VehicleExitEvent event) 
 	{
 		LivingEntity pliv = event.getExited();
-		Player player = (Player) pliv;
-		ht.stats.removeBoard(player);
+		if(pliv instanceof Player)
+		{
+			Player player = (Player) pliv;
+			ht.stats.removeBoard(player);
+		}
 	}
 
 }
