@@ -27,11 +27,15 @@ commands:
   setstable:
     description: sets a stable for your horse
     aliases: []
-    usage: /<command> 
+    usage: /<command> [stable name]
+  delstable:
+    description: deletes a stable 
+    aliases: []
+    usage: /<command> [stable name]
   stable:
     description: teleports your horse back to its stable
     aliases: []
-    usage: /<command> 
+    usage: /<command> [stable name] 
   hstat:
     description: gives you information about your horse
     aliases: []

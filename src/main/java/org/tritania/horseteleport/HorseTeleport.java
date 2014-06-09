@@ -75,8 +75,7 @@ public class HorseTeleport extends JavaPlugin
         getCommand("setstable").setExecutor(new SetStable(this));
         getCommand("stable").setExecutor(new CStable(this));
         getCommand("hstat").setExecutor(new Hstat(this));
-      
-		
+        getCommand("delstable").setExecutor(new DelStable(this));
 	}
 	
 	public void onDisable() 

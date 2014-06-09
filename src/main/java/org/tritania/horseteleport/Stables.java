@@ -149,5 +149,12 @@ public class Stables implements Serializable
         String names = stable.getNames();
 		return names;
 	}
+	
+	public void deleteStable(Player player, String name)
+	{
+		UUID playerId = player.getUniqueId();
+        Stable stable = stablelocations.get(playerId);
+        stable.delStable(name);
+	}
 }
    
