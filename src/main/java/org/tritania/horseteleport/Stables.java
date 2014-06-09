@@ -141,5 +141,13 @@ public class Stables implements Serializable
             return false;
         }
     }
+    
+    public String getStableNames(Player player)
+    {
+		UUID playerId = player.getUniqueId();
+        Stable stable = stablelocations.get(playerId);
+        String names = stable.getNames();
+		return names;
+	}
 }
    

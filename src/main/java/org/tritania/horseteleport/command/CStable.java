@@ -66,7 +66,7 @@ public class CStable implements CommandExecutor
 			{	
 				if (args.length == 0)
 				{
-					//list stables
+					Message.info(player, ht.horsehomes.getStableNames(player));
 				}
 				else if (ht.horsehomes.check(player, args[0]))
 				{

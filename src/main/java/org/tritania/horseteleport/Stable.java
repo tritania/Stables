@@ -59,5 +59,15 @@ public class Stable implements Serializable
     {
         stableList.remove(name);
     }
+    
+    public String getNames()
+    {
+		String list = "Stables:";
+		for (Map.Entry<String, String> entry : stableList.entrySet())
+		{
+			list += " " + entry.getKey();
+		}
+		return list;
+	}
 }
 
