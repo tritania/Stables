@@ -61,6 +61,7 @@ public class DelStable implements CommandExecutor
 					if (ht.horsehomes.check(player, args[0]))
 					{
 						ht.horsehomes.deleteStable(player, args[0]);
+						Message.info(sender, "Deleting stable: " + args[0]);
 					}
 					else
 					{

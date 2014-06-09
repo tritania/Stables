@@ -59,7 +59,7 @@ public class SetStable implements CommandExecutor
 				ht.horsehomes.hasStable(player);
 				Location stable = player.getLocation();
 				ht.horsehomes.updateStable(player, stable, args[0]);
-				Message.info(sender, "Stable set!");
+				Message.info(sender, "Stable " + args[0] + " set!");
 			}
 			else 
 			{

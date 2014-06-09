@@ -100,7 +100,7 @@ public class Teleportation
 			en.setMaxHealth(health);
 			en.setAdult();
 			en.setCustomName(name);
-			if (name == null | name.equals("Horse"))
+			if (name == null || name.equals("Horse"))
 				en.setCustomNameVisible(false);
 			else
 				en.setCustomNameVisible(true);
@@ -157,7 +157,7 @@ public class Teleportation
 			en.setMaxHealth(health);
 			en.setAdult();
 			en.setCustomName(name);
-			if (name == null | name.equals("Horse"))
+			if (name == null || name.equals("Horse"))
 				en.setCustomNameVisible(false);
 			else
 				en.setCustomNameVisible(true);
