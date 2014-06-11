@@ -19,25 +19,29 @@ commands:
   haccept:
     description: accept a teleport
     aliases: []
-    usage: /<command> 
+    usage: /<command>
   hdeny:
     description: deny a teleport
     aliases: []
-    usage: /<command> 
+    usage: /<command>
   setstable:
     description: sets a stable for your horse
     aliases: []
     usage: /<command> [stable name]
   delstable:
-    description: deletes a stable 
+    description: deletes a stable
     aliases: []
     usage: /<command> [stable name]
   stable:
     description: teleports your horse back to its stable
     aliases: []
-    usage: /<command> [stable name] 
+    usage: /<command> [stable name]
   hstat:
     description: gives you information about your horse
     aliases: []
-    usage: /<command> 
+    usage: /<command>
+  hspawn:
+    description: spawns a horse to the given parameters
+    aliases: []
+    usage: /<command>
 

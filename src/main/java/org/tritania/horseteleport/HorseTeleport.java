@@ -32,41 +32,49 @@ import org.bukkit.plugin.PluginManager;
 
 import org.tritania.horseteleport.StatBoard;
 import org.tritania.horseteleport.Teleportation;
+import org.tritania.horseteleport.Configuration;
+import org.tritania.horseteleport.Recipes;
 import org.tritania.horseteleport.util.Log;
 import org.tritania.horseteleport.util.Message;
 import org.tritania.horseteleport.command.*;
 
 public class HorseTeleport extends JavaPlugin
 {
-	public Teleportation moving;
-	public Stables horsehomes;
-	public StatBoard stats;
-	public String datalocal;
-	
-	public void onLoad()
-	{
-		saveResource("readme.txt", true); 
-	}
-	
-	public void onEnable()
-	{
-		PluginManager pm;
-		Plugin p;
-		
-		Log.init(getLogger());
-		Message.init(getDescription().getName());
-		
-		pm = getServer().getPluginManager();
-		
-		datalocal = getDataFolder().getAbsolutePath();
-		
-		pm.registerEvents(new VehicleListener(this), this);
-		
-		moving = new Teleportation(this);
-		horsehomes = new Stables(this);
-		stats = new StatBoard(this);
-		
-		horsehomes.loadStables();
+    public Teleportation moving;
+    public Stables horsehomes;
+    public StatBoard stats;
+    public Configuration config;
+    public Recipes recipes;
+    public String datalocal;
+
+    public void onLoad()
+    {
+        saveResource("readme.txt", true);
+        config = new Configuration(new File(getDataFolder(), "config.yml"));
+    }
+
+    public void onEnable()
+    {
+        PluginManager pm;
+        Plugin p;
+
+        Log.init(getLogger());
+        Message.init(getDescription().getName());
+
+        pm = getServer().getPluginManager();
+
+        config.load();
+
+        datalocal = getDataFolder().getAbsolutePath();
+
+        pm.registerEvents(new VehicleListener(this), this);
+
+        moving = new Teleportation(this);
+        horsehomes = new Stables(this);
+        stats = new StatBoard(this);
+        recipes = new Recipes(this);
+
+        horsehomes.loadStables();
 
         getCommand("htpa").setExecutor(new Teleport(this));
         getCommand("htpahere").setExecutor(new Hteleport(this));
@@ -75,17 +83,18 @@ public class HorseTeleport extends JavaPlugin
         getCommand("setstable").setExecutor(new SetStable(this));
         getCommand("stable").setExecutor(new CStable(this));
         getCommand("hstat").setExecutor(new Hstat(this));
+        getCommand("hspawn").setExecutor(new HSpawn(this));
         getCommand("delstable").setExecutor(new DelStable(this));
-	}
-	
-	public void onDisable() 
-	{
-		horsehomes.offloadStables();
     }
-    
-	public void reload()
-	{
-		horsehomes.offloadStables();
-	}
-	
+
+    public void onDisable()
+    {
+        horsehomes.offloadStables();
+    }
+
+    public void reload()
+    {
+        horsehomes.offloadStables();
+    }
+
 }

@@ -56,15 +56,15 @@ import static org.bukkit.entity.Horse.*;
 public class Stables implements Serializable
 {
     public HashMap<UUID, Stable> stablelocations = new HashMap<UUID, Stable>();
-    
+
     public HorseTeleport ht;
 
     public Stables(HorseTeleport ht)
     {
         this.ht = ht;
     }
-    
-    public void loadStables() 
+
+    public void loadStables()
     {
         try
         {
@@ -82,7 +82,7 @@ public class Stables implements Serializable
             Log.severe(" " + ex.getMessage());
         }
     }
-    
+
     public void offloadStables()
     {
         try
@@ -90,19 +90,19 @@ public class Stables implements Serializable
             File data =  new File(ht.datalocal + "/stables.data");
             FileOutputStream fos   = new FileOutputStream(data);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            
+
             oos.writeObject(stablelocations);
             oos.flush();
             oos.close();
             fos.close();
-            
+
         }
         catch(Exception ex)
         {
             Log.severe("  " + ex.getMessage());
         }
     }
-    
+
     public void updateStable(Player player, Location location, String name)
     {
         UUID playerId = player.getUniqueId();
@@ -110,7 +110,7 @@ public class Stables implements Serializable
         Stable stable = stablelocations.get(playerId);
         stable.addStable(name, local);
     }
-    
+
     public Location getStable(Player player, String name)
     {
         UUID playerId = player.getUniqueId();
@@ -119,14 +119,14 @@ public class Stables implements Serializable
         Location location = new Location(Bukkit.getWorld(ld[0]),Double.parseDouble(ld[1]),Double.parseDouble(ld[2]),Double.parseDouble(ld[3]));
         return location;
     }
-    
+
     public boolean check(Player player, String name)
     {
         UUID playerId = player.getUniqueId();
         Stable stable = stablelocations.get(playerId);
         return stable.checkStable(name);
     }
-    
+
     public boolean hasStable(Player player)
     {
         UUID playerId = player.getUniqueId();
@@ -141,20 +141,20 @@ public class Stables implements Serializable
             return false;
         }
     }
-    
+
     public String getStableNames(Player player)
     {
-		UUID playerId = player.getUniqueId();
+        UUID playerId = player.getUniqueId();
         Stable stable = stablelocations.get(playerId);
         String names = stable.getNames();
-		return names;
-	}
-	
-	public void deleteStable(Player player, String name)
-	{
-		UUID playerId = player.getUniqueId();
+        return names;
+    }
+
+    public void deleteStable(Player player, String name)
+    {
+        UUID playerId = player.getUniqueId();
         Stable stable = stablelocations.get(playerId);
         stable.delStable(name);
-	}
+    }
 }
-   
+
