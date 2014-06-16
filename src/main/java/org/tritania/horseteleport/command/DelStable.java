@@ -40,48 +40,49 @@ import org.tritania.horseteleport.util.Message;
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class DelStable implements CommandExecutor 
+public class DelStable implements CommandExecutor
 {
-	public HorseTeleport ht;
+    public HorseTeleport ht;
 
     public DelStable(HorseTeleport ht)
     {
         this.ht = ht;
     }
-    
+
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
-	{ 
-		Player player = (Player) sender;
-		if (player.hasPermission("horseteleport.teleport"))
-		{
-			if (args.length == 1)
-			{
-				if (ht.horsehomes.hasStable(player))
-				{
-					if (ht.horsehomes.check(player, args[0]))
-					{
-						ht.horsehomes.deleteStable(player, args[0]);
-						Message.info(sender, "Deleting stable: " + args[0]);
-					}
-					else
-					{
-						Message.info(sender, "No such stable.");
-					}
-				}
-				else
-				{
-					Message.info(sender, "You don't have any stables to delete!");
-				}
-			}
-			else 
-			{
-				Message.info(sender, command.getUsage());
-			}
-		}
-		else 
-		{
-			Message.info(sender, "You don't have permission for that!");
-		}
-		return true;
-	}
+    {
+        Player player = (Player) sender;
+        if (player.hasPermission("horseteleport.teleport"))
+        {
+            if (args.length == 1)
+            {
+                String name = args[0].toLowerCase();
+                if (ht.horsehomes.hasStable(player))
+                {
+                    if (ht.horsehomes.check(player, name))
+                    {
+                        ht.horsehomes.deleteStable(player, name);
+                        Message.info(sender, "Deleting stable: " + name);
+                    }
+                    else
+                    {
+                        Message.info(sender, "No such stable.");
+                    }
+                }
+                else
+                {
+                    Message.info(sender, "You don't have any stables to delete!");
+                }
+            }
+            else
+            {
+                Message.info(sender, command.getUsage());
+            }
+        }
+        else
+        {
+            Message.info(sender, "You don't have permission for that!");
+        }
+        return true;
+    }
 }

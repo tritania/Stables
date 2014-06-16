@@ -48,96 +48,96 @@ import net.minecraft.server.v1_7_R3.GenericAttributes;
 import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
 /*horsed Imports*/
 
-public class CStable implements CommandExecutor 
+public class CStable implements CommandExecutor
 {
-	public HorseTeleport ht;
+    public HorseTeleport ht;
 
     public CStable(HorseTeleport ht)
     {
         this.ht = ht;
     }
-    
+
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
-	{
-		Player player = (Player) sender;
-		if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
-		{
-			if(ht.horsehomes.hasStable(player))
-			{	
-				if (args.length == 0)
-				{
-					Message.info(player, ht.horsehomes.getStableNames(player));
-				}
-				else if (ht.horsehomes.check(player, args[0]))
-				{
-					Entity vech = player.getVehicle();
-					Horse horse = (Horse) vech;
-					vech.eject();
-					
-					Message.info(sender, "Returning your horse home");
-					
-					Location location = ht.horsehomes.getStable(player, args[0]);
-					World world = location.getWorld();
-					
-					Variant vart = horse.getVariant();
-					Color col = horse.getColor();
-					Style sty = horse.getStyle();
-					int dom = horse.getDomestication();
-					int life = horse.getTicksLived();
-					ItemStack arm = horse.getInventory().getArmor();
-					ItemStack saddle = horse.getInventory().getSaddle();
-					double ju = horse.getJumpStrength();
-					double health = horse.getMaxHealth();
-					String name = horse.getCustomName();
-					
-					AttributeInstance preattributes = ((EntityInsentient)((CraftLivingEntity)horse).getHandle()).getAttributeInstance(GenericAttributes.d);
-					double speed = preattributes.getValue();
-					
-					horse.remove();
-					
-					Chunk stch = location.getChunk();
-					stch.load();
-					
-					horse = world.spawn(location, Horse.class);
-					horse.setColor(col);
-					horse.setDomestication(dom);
-					horse.setVariant(vart);
-					horse.setStyle(sty);
-					horse.setTicksLived(life);
-					horse.setTamed(true);
-					horse.getInventory().setSaddle(saddle);
-					horse.getInventory().setArmor(arm);
-					horse.setJumpStrength(ju);
-					horse.setMaxHealth(health);	
-					horse.setAdult();
-					horse.setCustomName(name);
-					
-					AttributeInstance postattributes = ((EntityInsentient)((CraftLivingEntity)horse).getHandle()).getAttributeInstance(GenericAttributes.d);
-					postattributes.setValue(speed);
-					
-					if (name == null || name.equals("Horse"))
-						horse.setCustomNameVisible(false);
-					else
-						horse.setCustomNameVisible(true);
-				}
-				else
-				{
-					Message.info(sender, "No such home");
-				}
-			}
-			else
-			{
-				Message.info(sender, "You don't have a stable set");
-			}
-		}
-		else if (player.hasPermission("horseteleport.teleport") && player.getVehicle() == null)
-		{
-			Message.info(sender, "You need to be on a horse for this to work!");
-		}
-		else 
-		{
-			Message.info(sender, "You don't have permission for that!");
-		}
-		return true;
-	}
+    {
+        Player player = (Player) sender;
+        if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
+        {
+            if(ht.horsehomes.hasStable(player))
+            {
+                if (args.length == 0)
+                {
+                    Message.info(player, ht.horsehomes.getStableNames(player));
+                }
+                else if (ht.horsehomes.check(player, args[0].toLowerCase()))
+                {
+                    Entity vech = player.getVehicle();
+                    Horse horse = (Horse) vech;
+                    vech.eject();
+
+                    Message.info(sender, "Returning your horse home");
+
+                    Location location = ht.horsehomes.getStable(player, args[0]);
+                    World world = location.getWorld();
+
+                    Variant vart = horse.getVariant();
+                    Color col = horse.getColor();
+                    Style sty = horse.getStyle();
+                    int dom = horse.getDomestication();
+                    int life = horse.getTicksLived();
+                    ItemStack arm = horse.getInventory().getArmor();
+                    ItemStack saddle = horse.getInventory().getSaddle();
+                    double ju = horse.getJumpStrength();
+                    double health = horse.getMaxHealth();
+                    String name = horse.getCustomName();
+
+                    AttributeInstance preattributes = ((EntityInsentient)((CraftLivingEntity)horse).getHandle()).getAttributeInstance(GenericAttributes.d);
+                    double speed = preattributes.getValue();
+
+                    horse.remove();
+
+                    Chunk stch = location.getChunk();
+                    stch.load();
+
+                    horse = world.spawn(location, Horse.class);
+                    horse.setColor(col);
+                    horse.setDomestication(dom);
+                    horse.setVariant(vart);
+                    horse.setStyle(sty);
+                    horse.setTicksLived(life);
+                    horse.setTamed(true);
+                    horse.getInventory().setSaddle(saddle);
+                    horse.getInventory().setArmor(arm);
+                    horse.setJumpStrength(ju);
+                    horse.setMaxHealth(health);
+                    horse.setAdult();
+                    horse.setCustomName(name);
+
+                    AttributeInstance postattributes = ((EntityInsentient)((CraftLivingEntity)horse).getHandle()).getAttributeInstance(GenericAttributes.d);
+                    postattributes.setValue(speed);
+
+                    if (name == null || name.equals("Horse"))
+                        horse.setCustomNameVisible(false);
+                    else
+                        horse.setCustomNameVisible(true);
+                }
+                else
+                {
+                    Message.info(sender, "No such home");
+                }
+            }
+            else
+            {
+                Message.info(sender, "You don't have a stable set");
+            }
+        }
+        else if (player.hasPermission("horseteleport.teleport") && player.getVehicle() == null)
+        {
+            Message.info(sender, "You need to be on a horse for this to work!");
+        }
+        else
+        {
+            Message.info(sender, "You don't have permission for that!");
+        }
+        return true;
+    }
 }

@@ -40,36 +40,37 @@ import org.tritania.horseteleport.util.Message;
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class SetStable implements CommandExecutor 
+public class SetStable implements CommandExecutor
 {
-	public HorseTeleport ht;
+    public HorseTeleport ht;
 
     public SetStable(HorseTeleport ht)
     {
         this.ht = ht;
     }
-    
+
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
-	{ 
-		Player player = (Player) sender;
-		if (player.hasPermission("horseteleport.teleport"))
-		{
-			if (args.length == 1)
-			{
-				ht.horsehomes.hasStable(player);
-				Location stable = player.getLocation();
-				ht.horsehomes.updateStable(player, stable, args[0]);
-				Message.info(sender, "Stable " + args[0] + " set!");
-			}
-			else 
-			{
-				Message.info(sender, command.getUsage());
-			}
-		}
-		else 
-		{
-			Message.info(sender, "You don't have permission for that!");
-		}
-		return true;
-	}
+    {
+        Player player = (Player) sender;
+        if (player.hasPermission("horseteleport.teleport"))
+        {
+            if (args.length == 1)
+            {
+                String name = args[0].toLowerCase();
+                ht.horsehomes.hasStable(player);
+                Location stable = player.getLocation();
+                ht.horsehomes.updateStable(player, stable, name);
+                Message.info(sender, "Stable " + name + " set!");
+            }
+            else
+            {
+                Message.info(sender, command.getUsage());
+            }
+        }
+        else
+        {
+            Message.info(sender, "You don't have permission for that!");
+        }
+        return true;
+    }
 }
