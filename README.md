@@ -17,8 +17,15 @@ A Bukkit plugin to allow teleportation of horses on Minecraft multiplayer server
 * horseteleport.teleport        Players with this permisson can teleport while on their horse
 * horseteleport.spawn           Players with this permisson can spawn horses with /hspawn
 
+## Configuration ##
+These values are set to false by default to enable them set them to true
+* Allow craftable saddles       Allows saddles to be crafted
+* Allow craftable horse armor   Allows armor to be crafted
+
 
 ## Installation ##
-This plugin is designed to be lightweight as such you just need to build it using maven and then drop it into your bukkit based server plugins directory
+To build and install this plugin simply install apache maven download this source code and run:
+```mvn clean package install```
+inside the source code directory. Then move the jar file inside of the target directory to your server's plugin directory.
 
 
