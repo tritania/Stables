@@ -39,7 +39,7 @@ public class Configuration extends YamlConfiguration
         this.file = file;
 
         craftSaddles = false;
-
+        craftArmor = false;
     }
 
     public void load()

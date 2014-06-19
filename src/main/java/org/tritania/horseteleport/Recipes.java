@@ -39,17 +39,27 @@ public class Recipes
 
     public void addArmor()
     {
+        if (ht.config.craftArmor)
+        {
+            ShapedRecipe saddle = new ShapedRecipe(new ItemStack(Material.DIAMOND_BARDING, 1));
+            ShapedRecipe saddle = new ShapedRecipe(new ItemStack(Material.GOLD_BARDING, 1));
+            ShapedRecipe saddle = new ShapedRecipe(new ItemStack(Material.IRON_BARDING, 1));
 
+            Log.info("Recipes for armor added");
+        }
     }
 
     public void addSadles()
     {
-        ShapedRecipe saddle = new ShapedRecipe(new ItemStack(Material.SADDLE));
-        saddle.shape("SBS", "SAS", "LLL");
-        saddle.setIngredient('S', Material.STRING);
-        saddle.setIngredient('A', Material.AIR);
-        saddle.setIngredient('B', Material.STICK);
-        saddle.setIngredient('L', Material.LEATHER);
-        Bukkit.getServer().addRecipe(saddle);
+        if (ht.config.craftSaddles)
+        {
+            ShapedRecipe saddle = new ShapedRecipe(new ItemStack(Material.SADDLE, 1));
+            saddle.shape("SBS", "S S", "LLL");
+            saddle.setIngredient('S', Material.STRING);
+            saddle.setIngredient('B', Material.STICK);
+            saddle.setIngredient('L', Material.LEATHER);
+            Bukkit.getServer().addRecipe(saddle);
+            Log.info("Recipe for saddles added");
+        }
     }
 }
