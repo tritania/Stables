@@ -41,9 +41,22 @@ public class Recipes
     {
         if (ht.config.craftArmor)
         {
-            ShapedRecipe saddle = new ShapedRecipe(new ItemStack(Material.DIAMOND_BARDING, 1));
-            ShapedRecipe saddle = new ShapedRecipe(new ItemStack(Material.GOLD_BARDING, 1));
-            ShapedRecipe saddle = new ShapedRecipe(new ItemStack(Material.IRON_BARDING, 1));
+            ShapedRecipe diamond = new ShapedRecipe(new ItemStack(Material.DIAMOND_BARDING, 1));
+            ShapedRecipe gold = new ShapedRecipe(new ItemStack(Material.GOLD_BARDING, 1));
+            ShapedRecipe iron = new ShapedRecipe(new ItemStack(Material.IRON_BARDING, 1));
+
+            diamond.shape("  D", "DDD", "D D");
+            diamond.setIngredient('D', Material.DIAMOND_BLOCK);
+
+            gold.shape("  D", "DDD", "D D");
+            gold.setIngredient('D', Material.GOLD_BLOCK);
+
+            iron.shape("  D", "DDD", "D D");
+            iron.setIngredient('D', Material.IRON_BLOCK);
+
+            Bukkit.getServer().addRecipe(diamond);
+            Bukkit.getServer().addRecipe(gold);
+            Bukkit.getServer().addRecipe(iron);
 
             Log.info("Recipes for armor added");
         }
