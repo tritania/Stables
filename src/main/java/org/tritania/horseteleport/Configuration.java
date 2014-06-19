@@ -54,7 +54,7 @@ public class Configuration extends YamlConfiguration
         }
 
         craftSaddles = getBoolean("Allow craftable saddles", craftSaddles);
-        craftSaddles = getBoolean("Allow craftable horse armor", craftArmor);
+        craftArmor = getBoolean("Allow craftable horse armor", craftArmor);
 
         if (!file.exists())
             save();
