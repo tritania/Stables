@@ -43,5 +43,5 @@ commands:
   hspawn:
     description: spawns a horse to the given parameters
     aliases: []
-    usage: /<command>
+    usage: /[color] [style] [variant] [jump] [speed] [health]
 

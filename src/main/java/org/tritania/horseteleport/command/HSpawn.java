@@ -57,6 +57,7 @@ import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
 public class HSpawn implements CommandExecutor
 {
     public HorseTeleport ht;
+    public Horse horse;
 
     public HSpawn(HorseTeleport ht)
     {
@@ -72,9 +73,42 @@ public class HSpawn implements CommandExecutor
             {
                 Message.info(sender, command.getUsage());
             }
-            else
+            else if (args.length == 6)
             {
-                //spawn horse
+                ItemStack saddle = new ItemStack(Material.SADDLE, 1);
+
+                Location location = player.getLocation();
+
+                String colorS = args[0].toUpperCase();
+                Color color = Color.valueOf(colorS);
+
+                String styleS = args[1].toUpperCase();
+                Style style = Style.valueOf(styleS);
+
+                String variantS = args[2].toUpperCase();
+                Variant variant = Variant.valueOf(variantS);
+
+                int jump = Integer.parseInt(args[3]);
+                double speed = Double.parseDouble(args[4]) / 100;
+                int health = Integer.parseInt(args[5]);
+
+                World world = player.getWorld();
+
+                horse = world.spawn(location, Horse.class);
+                horse.setColor(color);
+                horse.setDomestication(horse.getMaxDomestication());
+                horse.setVariant(variant);
+                horse.setStyle(style);
+                horse.setTamed(true);
+                horse.getInventory().setSaddle(saddle);
+                horse.setJumpStrength(jump);
+                horse.setMaxHealth(health);
+                horse.setAdult();
+
+                AttributeInstance postattributes = ( (EntityInsentient) ( (CraftLivingEntity) horse).getHandle()).getAttributeInstance(GenericAttributes.d);
+                postattributes.setValue(speed);
+
+                horse.setPassenger(player);
             }
         }
         else
