@@ -80,6 +80,8 @@ public class Stables extends JavaPlugin
         stats = new StatBoard(this);
         recipes = new Recipes(this);
 
+        store.loadPlayers();
+
         getCommand("htpa").setExecutor(new Teleport(this));
         getCommand("htpahere").setExecutor(new Hteleport(this));
         getCommand("haccept").setExecutor(new Haccept(this));
@@ -94,12 +96,6 @@ public class Stables extends JavaPlugin
 
     public void onDisable()
     {
-
+        store.savePlayers();
     }
-
-    public void reload()
-    {
-
-    }
-
 }
