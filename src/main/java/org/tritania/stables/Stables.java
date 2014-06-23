@@ -88,6 +88,7 @@ public class Stables extends JavaPlugin
         getCommand("hstat").setExecutor(new Hstat(this));
         getCommand("hspawn").setExecutor(new HSpawn(this));
         getCommand("delstable").setExecutor(new DelStable(this));
+        getCommand("race").setExecutor(new CRace(this));
     }
 
     public void onDisable()

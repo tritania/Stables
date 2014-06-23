@@ -40,6 +40,10 @@ commands:
     description: gives you information about your horse
     aliases: []
     usage: /<command>
+  race:
+    description: horse race controls
+    aliases: []
+    usage: /<command>
   hspawn:
     description: spawns a horse to the given parameters
     aliases: []
