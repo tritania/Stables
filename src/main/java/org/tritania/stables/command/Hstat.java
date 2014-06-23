@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.stables.command;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -28,47 +28,63 @@ import org.bukkit.entity.Horse;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Vehicle;
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Material;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.ChatColor;
 
-import org.tritania.horseteleport.HorseTeleport;
-import org.tritania.horseteleport.util.Message;
+import org.tritania.stables.Stables;
+import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
+
+import net.minecraft.server.v1_7_R3.AttributeInstance;
+import net.minecraft.server.v1_7_R3.AttributeModifier;
+import net.minecraft.server.v1_7_R3.EntityLiving;
+import net.minecraft.server.v1_7_R3.EntityInsentient;
+import net.minecraft.server.v1_7_R3.GenericAttributes;
+import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
 /*End Imports*/
 
-public class Teleport implements CommandExecutor 
+public class Hstat implements CommandExecutor
 {
-	public HorseTeleport ht;
+    public Stables ht;
 
-    public Teleport(HorseTeleport ht)
+    public Hstat(Stables ht)
     {
         this.ht = ht;
     }
-    
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
-	{
-		Player player = (Player) sender;
-		if (args.length < 1) 
-        {
-            Message.info(sender, command.getUsage());
-            return true;
-        }
-		if ( Bukkit.getPlayer(args[0]) == player)
-		{
-			Message.info(sender, command.getUsage());
-            return true;
-		}
-		//the person being teleported needs permission not the one giving the command
-		else if (player.hasPermission("horseteleport.teleport"))
-		{
-			Message.info(sender, "Sending request.");
-			ht.moving.issueRequestThere(player, Bukkit.getPlayer(args[0])); 
-		}
 
-		return true;
-	}
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+    {
+        Player player = (Player) sender;
+        if (player.getVehicle() != null && player.hasPermission("horseteleport.teleport"))
+        {
+            if (args.length < 1)
+            {
+                ht.stats.setBoard(player);
+            }
+            else if (args[0].equals("clear"))
+            {
+                System.out.println("bloop");
+                ht.stats.removeBoard(player);
+            }
+        }
+        else
+        {
+            Message.info(sender, "You need to be on a horse for this to work!");
+        }
+
+
+        return true;
+    }
 }
+

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport;
+package org.tritania.stables;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -38,8 +38,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.plugin.PluginManager;
 
-import org.tritania.horseteleport.HorseTeleport;
-import org.tritania.horseteleport.util.Message;
+import org.tritania.stables.Stables;
+import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
 
@@ -50,36 +50,36 @@ import net.minecraft.server.v1_7_R3.EntityInsentient;
 import net.minecraft.server.v1_7_R3.GenericAttributes;
 import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
 
-public class VehicleListener implements Listener 
+public class VehicleListener implements Listener
 {
-	
-	public HorseTeleport ht;
 
-    public VehicleListener(HorseTeleport ht)
+    public Stables ht;
+
+    public VehicleListener(Stables ht)
     {
         this.ht = ht;
     }
-	
-	public void register()
-	{
-		PluginManager manager;
-		
-		manager = ht.getServer().getPluginManager();
-		manager.registerEvents(this, ht);
-	} 
-	
+
+    public void register()
+    {
+        PluginManager manager;
+
+        manager = ht.getServer().getPluginManager();
+        manager.registerEvents(this, ht);
+    }
+
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onVehicleExit(VehicleExitEvent event) 
-	{
-		LivingEntity pliv = event.getExited();
-		if(pliv instanceof Player)
-		{
-			Player player = (Player) pliv;
-			ht.stats.removeBoard(player);
-		}
-	}
+    public void onVehicleExit(VehicleExitEvent event)
+    {
+        LivingEntity pliv = event.getExited();
+        if(pliv instanceof Player)
+        {
+            Player player = (Player) pliv;
+            ht.stats.removeBoard(player);
+        }
+    }
 
 }
-   
+
 

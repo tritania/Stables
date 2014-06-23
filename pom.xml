@@ -4,12 +4,12 @@
                         http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.tritania.horseteleport</groupId>
-    <artifactId>HorseTeleport</artifactId>
+    <groupId>org.tritania.stables</groupId>
+    <artifactId>Stables</artifactId>
     <packaging>jar</packaging>
     <version>0.1.0</version>
     <name>Chrysus</name>
-    <url>https://github.com/tritania/HorseTeleport/</url>
+    <url>https://github.com/tritania/Stables/</url>
 
     <developers>
         <developer>
@@ -26,17 +26,17 @@
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/tritania/HorseTeleport/issues/</url>
+        <url>https://github.com/tritania/Stables/issues/</url>
     </issueManagement>
 
     <scm>
         <connection>
-            scm:git:https://github.com/tritania/HorseTeleport.git
+            scm:git:https://github.com/tritania/Stables.git
         </connection>
         <developerConnection>
-            scm:git:git@github.com:tritania/HorseTeleport.git
+            scm:git:git@github.com:tritania/Stables.git
         </developerConnection>
-        <url>https://github.com/tritania/HorseTeleport/</url>
+        <url>https://github.com/tritania/Stables/</url>
     </scm>
 
     <properties>
@@ -57,11 +57,11 @@
             <version>[1.7.2-R0.3-SNAPSHOT,)</version>
         </dependency>
         <dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
-			<version>1.7.9-R0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.7.9-R0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

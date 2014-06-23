@@ -1,7 +1,7 @@
-HorseTeleport
+Stables
 =============
 
-A Bukkit plugin to allow teleportation of horses on Minecraft multiplayer servers
+A Bukkit plugin that adds more features to horses on Minecraft multiplayer servers
 
 ## Commands ##
 * /htpa playername      Allows the sender to teleport his friend on his horse to him
@@ -14,8 +14,8 @@ A Bukkit plugin to allow teleportation of horses on Minecraft multiplayer server
 * /hspawn               creates a horse to the given parameters
 
 ## Permissons ##
-* horseteleport.teleport        Players with this permisson can teleport while on their horse
-* horseteleport.spawn           Players with this permisson can spawn horses with /hspawn
+* stables.teleport        Players with this permisson can teleport while on their horse
+* stables.spawn           Players with this permisson can spawn horses with /hspawn
 
 ## Configuration ##
 These values are set to false by default to enable them set them to true

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.stables.command;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -34,17 +34,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Material;
 
-import org.tritania.horseteleport.HorseTeleport;
-import org.tritania.horseteleport.util.Message;
+import org.tritania.stables.Stables;
+import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class SetStable implements CommandExecutor
+public class Haccept implements CommandExecutor
 {
-    public HorseTeleport ht;
+    public Stables ht;
 
-    public SetStable(HorseTeleport ht)
+    public Haccept(Stables ht)
     {
         this.ht = ht;
     }
@@ -52,25 +52,7 @@ public class SetStable implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         Player player = (Player) sender;
-        if (player.hasPermission("horseteleport.teleport"))
-        {
-            if (args.length == 1)
-            {
-                String name = args[0].toLowerCase();
-                ht.horsehomes.hasStable(player);
-                Location stable = player.getLocation();
-                ht.horsehomes.updateStable(player, stable, name);
-                Message.info(sender, "Stable " + name + " set!");
-            }
-            else
-            {
-                Message.info(sender, command.getUsage());
-            }
-        }
-        else
-        {
-            Message.info(sender, "You don't have permission for that!");
-        }
+        ht.moving.accepted(player);
         return true;
     }
 }

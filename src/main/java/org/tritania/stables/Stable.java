@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport;
+package org.tritania.stables;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +32,7 @@ import java.util.UUID;
 public class Stable implements Serializable
 {
     public HashMap<String, String> stableList = new HashMap<String, String>();
-    
+
     public boolean checkStable(String name)
     {
         if(stableList.containsKey(name))
@@ -44,30 +44,30 @@ public class Stable implements Serializable
             return false;
         }
     }
-    
+
     public String getLocation(String name)
     {
         return stableList.get(name);
     }
-    
+
     public void addStable(String name, String location)
     {
         stableList.put(name, location);
     }
-    
+
     public void delStable(String name)
     {
         stableList.remove(name);
     }
-    
+
     public String getNames()
     {
-		String list = "Stables:";
-		for (Map.Entry<String, String> entry : stableList.entrySet())
-		{
-			list += " " + entry.getKey();
-		}
-		return list;
-	}
+        String list = "Stables:";
+        for (Map.Entry<String, String> entry : stableList.entrySet())
+        {
+            list += " " + entry.getKey();
+        }
+        return list;
+    }
 }
 

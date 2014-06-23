@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.stables.command;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -34,25 +34,25 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Material;
 
-import org.tritania.horseteleport.HorseTeleport;
-import org.tritania.horseteleport.util.Message;
+import org.tritania.stables.Stables;
+import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class Hdeny implements CommandExecutor 
+public class Hdeny implements CommandExecutor
 {
-	public HorseTeleport ht;
+    public Stables ht;
 
-    public Hdeny(HorseTeleport ht)
+    public Hdeny(Stables ht)
     {
         this.ht = ht;
     }
-    
+
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
-	{
-		Player player = (Player) sender;
-		ht.moving.denied(player);
-		return true;
-	}
+    {
+        Player player = (Player) sender;
+        ht.moving.denied(player);
+        return true;
+    }
 }

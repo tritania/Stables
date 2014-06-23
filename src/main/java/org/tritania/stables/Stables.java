@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport;
+package org.tritania.stables;
 
 /*Start Imports*/
 import java.io.File;
@@ -30,18 +30,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
-import org.tritania.horseteleport.StatBoard;
-import org.tritania.horseteleport.Teleportation;
-import org.tritania.horseteleport.Configuration;
-import org.tritania.horseteleport.Recipes;
-import org.tritania.horseteleport.util.Log;
-import org.tritania.horseteleport.util.Message;
-import org.tritania.horseteleport.command.*;
+import org.tritania.stables.StatBoard;
+import org.tritania.stables.Teleportation;
+import org.tritania.stables.Configuration;
+import org.tritania.stables.Recipes;
+import org.tritania.stables.util.Log;
+import org.tritania.stables.util.Message;
+import org.tritania.stables.command.*;
 
-public class HorseTeleport extends JavaPlugin
+public class Stables extends JavaPlugin
 {
     public Teleportation moving;
-    public Stables horsehomes;
+    public StableSystem horsehomes;
     public StatBoard stats;
     public Configuration config;
     public Recipes recipes;
@@ -70,7 +70,7 @@ public class HorseTeleport extends JavaPlugin
         pm.registerEvents(new VehicleListener(this), this);
 
         moving = new Teleportation(this);
-        horsehomes = new Stables(this);
+        horsehomes = new StableSystem(this);
         stats = new StatBoard(this);
         recipes = new Recipes(this);
 

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport;
+package org.tritania.stables;
 
 /*Start Imports*/
 import java.util.HashMap;
@@ -45,21 +45,21 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Material;
 
-import org.tritania.horseteleport.HorseTeleport;
-import org.tritania.horseteleport.util.Message;
-import org.tritania.horseteleport.util.Log;
-import org.tritania.horseteleport.Stable;
+import org.tritania.stables.Stables;
+import org.tritania.stables.util.Message;
+import org.tritania.stables.util.Log;
+import org.tritania.stables.Stable;
 
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class Stables implements Serializable
+public class StableSystem implements Serializable
 {
     public HashMap<UUID, Stable> stablelocations = new HashMap<UUID, Stable>();
 
-    public HorseTeleport ht;
+    public Stables ht;
 
-    public Stables(HorseTeleport ht)
+    public StableSystem(Stables ht)
     {
         this.ht = ht;
     }

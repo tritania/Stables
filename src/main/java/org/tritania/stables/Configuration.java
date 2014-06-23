@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport;
+package org.tritania.stables;
 
 /*Start Imports*/
 import java.io.File;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import org.tritania.horseteleport.util.Log;
-import org.tritania.horseteleport.HorseTeleport;
+import org.tritania.stables.util.Log;
+import org.tritania.stables.Stables;
 /*End Imports*/
 
 public class Configuration extends YamlConfiguration

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.stables.command;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -34,17 +34,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Material;
 
-import org.tritania.horseteleport.HorseTeleport;
-import org.tritania.horseteleport.util.Message;
+import org.tritania.stables.Stables;
+import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class DelStable implements CommandExecutor
+public class SetStable implements CommandExecutor
 {
-    public HorseTeleport ht;
+    public Stables ht;
 
-    public DelStable(HorseTeleport ht)
+    public SetStable(Stables ht)
     {
         this.ht = ht;
     }
@@ -57,22 +57,10 @@ public class DelStable implements CommandExecutor
             if (args.length == 1)
             {
                 String name = args[0].toLowerCase();
-                if (ht.horsehomes.hasStable(player))
-                {
-                    if (ht.horsehomes.check(player, name))
-                    {
-                        ht.horsehomes.deleteStable(player, name);
-                        Message.info(sender, "Deleting stable: " + name);
-                    }
-                    else
-                    {
-                        Message.info(sender, "No such stable.");
-                    }
-                }
-                else
-                {
-                    Message.info(sender, "You don't have any stables to delete!");
-                }
+                ht.horsehomes.hasStable(player);
+                Location stable = player.getLocation();
+                ht.horsehomes.updateStable(player, stable, name);
+                Message.info(sender, "Stable " + name + " set!");
             }
             else
             {

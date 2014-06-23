@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.stables.command;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -41,8 +41,8 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.ChatColor;
 
-import org.tritania.horseteleport.HorseTeleport;
-import org.tritania.horseteleport.util.Message;
+import org.tritania.stables.Stables;
+import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
 
@@ -56,10 +56,10 @@ import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
 
 public class HSpawn implements CommandExecutor
 {
-    public HorseTeleport ht;
+    public Stables ht;
     public Horse horse;
 
-    public HSpawn(HorseTeleport ht)
+    public HSpawn(Stables ht)
     {
         this.ht = ht;
     }

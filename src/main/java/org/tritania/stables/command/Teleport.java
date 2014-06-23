@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.horseteleport.command;
+package org.tritania.stables.command;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;
@@ -34,41 +34,41 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.Material;
 
-import org.tritania.horseteleport.HorseTeleport;
-import org.tritania.horseteleport.util.Message;
+import org.tritania.stables.Stables;
+import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/
 
-public class Hteleport implements CommandExecutor 
+public class Teleport implements CommandExecutor
 {
-	public HorseTeleport ht;
+    public Stables ht;
 
-    public Hteleport(HorseTeleport ht)
+    public Teleport(Stables ht)
     {
         this.ht = ht;
     }
-    
+
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
-	{
-		Player player = (Player) sender;
-		if (args.length < 1) 
+    {
+        Player player = (Player) sender;
+        if (args.length < 1)
         {
             Message.info(sender, command.getUsage());
             return true;
         }
-		if ( Bukkit.getPlayer(args[0]) == player)
-		{
-			Message.info(sender, command.getUsage());
+        if ( Bukkit.getPlayer(args[0]) == player)
+        {
+            Message.info(sender, command.getUsage());
             return true;
-		}
-		//the person being teleported needs permission not the one giving the command
-		else if (Bukkit.getPlayer(args[0]).hasPermission("horseteleport.teleport")) //tpahere
-		{
-			Message.info(sender, "Sending request.");
-			ht.moving.issueRequestHere(player, Bukkit.getPlayer(args[0])); 
-		}
+        }
+        //the person being teleported needs permission not the one giving the command
+        else if (player.hasPermission("horseteleport.teleport"))
+        {
+            Message.info(sender, "Sending request.");
+            ht.moving.issueRequestThere(player, Bukkit.getPlayer(args[0]));
+        }
 
-		return true;
-	}
+        return true;
+    }
 }
