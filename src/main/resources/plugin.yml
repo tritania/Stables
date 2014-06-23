@@ -1,11 +1,11 @@
-name: HorseTeleport
+name: Stables
 version: 1.0
 description: >
-  Allows horse teleportation
+  Adds more features to horses
 author: Tritania
-website: https://github.com/tritania/HorseTeleport
+website: https://github.com/tritania/Stables
 
-main: org.tritania.horseteleport.HorseTeleport
+main: org.tritania.stables.Stables
 
 commands:
   htpa:
