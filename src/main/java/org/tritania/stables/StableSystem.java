@@ -64,43 +64,14 @@ public class StableSystem implements Serializable
         this.ht = ht;
     }
 
-    public void loadStables()
+    public void loadPlayerStable(UUID id, Stable stable)
     {
-        try
-        {
-            File data            = new File(ht.datalocal + "/stables.data");
-            FileInputStream fis  = new FileInputStream(data);
-            ObjectInputStream ois= new ObjectInputStream(fis);
-
-            stablelocations = (HashMap<UUID,Stable>)ois.readObject();
-
-            ois.close();
-            fis.close();
-        }
-        catch(Exception ex)
-        {
-            Log.severe(" " + ex.getMessage());
-        }
+        stablelocations.put(id, stable);
     }
 
-    public void offloadStables()
+    public void removePlayerStable(UUID id)
     {
-        try
-        {
-            File data =  new File(ht.datalocal + "/stables.data");
-            FileOutputStream fos   = new FileOutputStream(data);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(stablelocations);
-            oos.flush();
-            oos.close();
-            fos.close();
-
-        }
-        catch(Exception ex)
-        {
-            Log.severe("  " + ex.getMessage());
-        }
+        stablelocations.remove(id);
     }
 
     public void updateStable(Player player, Location location, String name)

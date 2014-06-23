@@ -37,6 +37,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.event.player.PlayerEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import org.tritania.stables.Stables;
 import org.tritania.stables.util.Message;
@@ -66,5 +69,23 @@ public class PlayerListener implements Listener
 
         manager = ht.getServer().getPluginManager();
         manager.registerEvents(this, ht);
+    }
+
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+    public void onPlayerJoin(PlayerJoinEvent event)
+    {
+       Player player = event.getPlayer();
+       if (ht.store.check(player))
+       {
+
+       }
+
+    }
+
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+    public void onPlayerLeave(PlayerQuitEvent event)
+    {
+       Player player = event.getPlayer();
+
     }
 }

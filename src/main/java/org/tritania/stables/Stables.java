@@ -38,6 +38,7 @@ import org.tritania.stables.util.Log;
 import org.tritania.stables.util.Message;
 import org.tritania.stables.command.*;
 import org.tritania.stables.listener.*;
+import org.tritania.stables.storage.Storage;
 
 public class Stables extends JavaPlugin
 {
@@ -47,6 +48,7 @@ public class Stables extends JavaPlugin
     public Configuration config;
     public Recipes recipes;
     public String datalocal;
+    public Storage store;
 
     public void onLoad()
     {
@@ -74,10 +76,9 @@ public class Stables extends JavaPlugin
 
         moving = new Teleportation(this);
         horsehomes = new StableSystem(this);
+        store = new Storage(this);
         stats = new StatBoard(this);
         recipes = new Recipes(this);
-
-        horsehomes.loadStables();
 
         getCommand("htpa").setExecutor(new Teleport(this));
         getCommand("htpahere").setExecutor(new Hteleport(this));
@@ -93,12 +94,12 @@ public class Stables extends JavaPlugin
 
     public void onDisable()
     {
-        horsehomes.offloadStables();
+
     }
 
     public void reload()
     {
-        horsehomes.offloadStables();
+
     }
 
 }
