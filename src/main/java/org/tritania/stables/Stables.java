@@ -69,6 +69,8 @@ public class Stables extends JavaPlugin
         datalocal = getDataFolder().getAbsolutePath();
 
         pm.registerEvents(new VehicleListener(this), this);
+        pm.registerEvents(new SpawnListener(this), this);
+        pm.registerEvents(new PlayerListener(this), this);
 
         moving = new Teleportation(this);
         horsehomes = new StableSystem(this);

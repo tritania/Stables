@@ -35,13 +35,14 @@ import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import org.tritania.stables.Stables;
 import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
+import static org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import net.minecraft.server.v1_7_R3.AttributeInstance;
 import net.minecraft.server.v1_7_R3.AttributeModifier;
@@ -66,6 +67,17 @@ public class SpawnListener implements Listener
 
         manager = ht.getServer().getPluginManager();
         manager.registerEvents(this, ht);
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
+    public void onCreatureSpawnEvent(CreatureSpawnEvent event)
+    {
+        SpawnReason spawnreason = event.getSpawnReason();
+        Entity horse = event.getEntity();
+        if (horse instanceof Horse && spawnreason.equals(SpawnReason.CUSTOM))
+        {
+            event.setCancelled(false);
+        }
     }
 }
 
