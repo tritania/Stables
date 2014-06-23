@@ -66,11 +66,11 @@ public class Hstat implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         Player player = (Player) sender;
-        if (player.getVehicle() != null && player.hasPermission("horseteleport.teleport"))
+        if (player.getVehicle() != null && player.hasPermission("stables.teleport"))
         {
             if (args.length < 1)
             {
-                ht.stats.setBoard(player);
+                ht.stats.setStat(player);
             }
             else if (args[0].equals("clear"))
             {

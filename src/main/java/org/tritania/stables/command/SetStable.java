@@ -52,7 +52,7 @@ public class SetStable implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         Player player = (Player) sender;
-        if (player.hasPermission("horseteleport.teleport"))
+        if (player.hasPermission("stables.teleport"))
         {
             if (args.length == 1)
             {

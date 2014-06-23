@@ -67,7 +67,7 @@ public class HSpawn implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         Player player = (Player) sender;
-        if (player.hasPermission("horseteleport.spawn"))
+        if (player.hasPermission("stables.spawn"))
         {
             if (args.length < 1)
             {

@@ -60,7 +60,7 @@ public class CStable implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         Player player = (Player) sender;
-        if (player.hasPermission("horseteleport.teleport") && player.getVehicle() != null)
+        if (player.hasPermission("stables.teleport") && player.getVehicle() != null)
         {
             if(ht.horsehomes.hasStable(player))
             {
@@ -130,7 +130,7 @@ public class CStable implements CommandExecutor
                 Message.info(sender, "You don't have a stable set");
             }
         }
-        else if (player.hasPermission("horseteleport.teleport") && player.getVehicle() == null)
+        else if (player.hasPermission("stables.teleport") && player.getVehicle() == null)
         {
             Message.info(sender, "You need to be on a horse for this to work!");
         }

@@ -63,7 +63,7 @@ public class Teleport implements CommandExecutor
             return true;
         }
         //the person being teleported needs permission not the one giving the command
-        else if (player.hasPermission("horseteleport.teleport"))
+        else if (player.hasPermission("stables.teleport"))
         {
             Message.info(sender, "Sending request.");
             ht.moving.issueRequestThere(player, Bukkit.getPlayer(args[0]));

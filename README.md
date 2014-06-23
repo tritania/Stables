@@ -13,9 +13,9 @@ A Bukkit plugin that adds more features to horses on Minecraft multiplayer serve
 * /delstable            deletes a stable
 * /hspawn               creates a horse to the given parameters
 
-## Permissons ##
-* stables.teleport        Players with this permisson can teleport while on their horse
-* stables.spawn           Players with this permisson can spawn horses with /hspawn
+## Permissions ##
+* stables.teleport        Players with this permission can teleport while on their horse
+* stables.spawn           Players with this permission can spawn horses with /hspawn
 
 ## Configuration ##
 These values are set to false by default to enable them set them to true
