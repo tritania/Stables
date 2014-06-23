@@ -84,7 +84,7 @@ public class Storage implements Serializable
         {
             return true;
         }
-        else
+        else if (player.hasPermission("stables.teleport"))
         {
             try
             {
@@ -94,6 +94,10 @@ public class Storage implements Serializable
             {
                 Log.severe("  " + ex.getMessage());
             }
+            return false;
+        }
+        else
+        {
             return false;
         }
     }
