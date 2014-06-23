@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tritania.stables;
+package org.tritania.stables.listener;
 
 /*Start Imports*/
 import org.bukkit.permissions.PermissibleBase;

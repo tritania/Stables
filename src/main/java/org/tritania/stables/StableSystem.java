@@ -48,7 +48,7 @@ import org.bukkit.Material;
 import org.tritania.stables.Stables;
 import org.tritania.stables.util.Message;
 import org.tritania.stables.util.Log;
-import org.tritania.stables.Stable;
+import org.tritania.stables.wrappers.Stable;
 
 import static org.bukkit.entity.Horse.*;
 /*End Imports*/

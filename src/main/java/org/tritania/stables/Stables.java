@@ -37,6 +37,7 @@ import org.tritania.stables.Recipes;
 import org.tritania.stables.util.Log;
 import org.tritania.stables.util.Message;
 import org.tritania.stables.command.*;
+import org.tritania.stables.listener.*;
 
 public class Stables extends JavaPlugin
 {
