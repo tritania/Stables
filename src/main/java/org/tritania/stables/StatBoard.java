@@ -43,6 +43,7 @@ import org.bukkit.ChatColor;
 
 import org.tritania.stables.Stables;
 import org.tritania.stables.util.Message;
+import org.tritania.stables.wrappers.Race;
 
 import static org.bukkit.entity.Horse.*;
 
@@ -64,7 +65,7 @@ public class StatBoard
     }
 
 
-    public void setBoard(Player player)
+    public void setStat(Player player)
     {
         Entity en = player.getVehicle();
         Horse horse = (Horse) en;
@@ -92,6 +93,11 @@ public class StatBoard
         speed.setScore(hspeedt);
 
         player.setScoreboard(board);
+    }
+
+    public void setRace(Race race, Player player)
+    {
+
     }
 
     public void removeBoard(Player player)
