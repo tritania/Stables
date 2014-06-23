@@ -64,14 +64,20 @@ public class StableSystem implements Serializable
         this.ht = ht;
     }
 
-    public void loadPlayerStable(UUID id, Stable stable)
+    public void loadPlayerStable(Player player, Stable stable)
     {
+        UUID id = player.getUniqueId();
         stablelocations.put(id, stable);
     }
 
-    public void removePlayerStable(UUID id)
+    public Stable getStableObj(Player player)
     {
-        stablelocations.remove(id);
+        return stablelocations.get(player.getUniqueId());
+    }
+
+    public void removePlayerStable(Player player)
+    {
+        stablelocations.remove(player.getUniqueId());
     }
 
     public void updateStable(Player player, Location location, String name)

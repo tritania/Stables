@@ -80,7 +80,22 @@ public class Storage implements Serializable
     public boolean check(Player player)
     {
         File data = new File(st.datalocal + "/playerdata/" + player.getUniqueId().toString());
-        return data.exists();
+        if (data.exists())
+        {
+            return true;
+        }
+        else
+        {
+            try
+            {
+                data.createNewFile();
+            }
+            catch(Exception ex)
+            {
+                Log.severe("  " + ex.getMessage());
+            }
+            return false;
+        }
     }
 
     public Stable loadPlayer(Player player)
@@ -102,5 +117,30 @@ public class Storage implements Serializable
             Log.severe(" " + ex.getMessage());
         }
         return stable;
+    }
+
+    public void loadPlayers()
+    {
+        Player[] playersSave = Bukkit.getOnlinePlayers();
+        for (Player play : playersSave)
+        {
+            if (check(play))
+            {
+                loadPlayer(play);
+            }
+        }
+    }
+
+    public void savePlayers()
+    {
+        Player[] playersSave = Bukkit.getOnlinePlayers();
+        for (Player play : playersSave)
+        {
+            if (check(play))
+            {
+                savePlayer(play, st.horsehomes.getStableObj(play));
+                st.horsehomes.removePlayerStable(play);
+            }
+        }
     }
 }

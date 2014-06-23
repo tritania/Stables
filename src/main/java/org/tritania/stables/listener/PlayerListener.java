@@ -77,7 +77,7 @@ public class PlayerListener implements Listener
        Player player = event.getPlayer();
        if (ht.store.check(player))
        {
-
+            ht.horsehomes.loadPlayerStable(player, ht.store.loadPlayer(player));
        }
 
     }
@@ -85,7 +85,8 @@ public class PlayerListener implements Listener
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     public void onPlayerLeave(PlayerQuitEvent event)
     {
-       Player player = event.getPlayer();
-
+        Player player = event.getPlayer();
+        ht.store.savePlayer(player, ht.horsehomes.getStableObj(player));
+        ht.horsehomes.removePlayerStable(player);
     }
 }
