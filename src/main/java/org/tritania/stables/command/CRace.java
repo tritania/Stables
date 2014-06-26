@@ -51,6 +51,10 @@ public class CRace implements CommandExecutor
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
+        if (args.length < 1) {
+            Message.info(sender, command.getUsage());
+            return true;
+        }
         return true;
     }
 }
