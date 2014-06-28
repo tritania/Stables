@@ -125,7 +125,7 @@ public class Storage implements Serializable
 
     public void loadPlayers()
     {
-        Player[] playersSave = Bukkit.getOnlinePlayers();
+        Player[] playersSave = Bukkit.getServer().getOnlinePlayers();
         for (Player play : playersSave)
         {
             if (check(play))

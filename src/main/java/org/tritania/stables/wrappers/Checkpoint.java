@@ -18,7 +18,6 @@
 package org.tritania.stables.wrappers;
 
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 import java.io.File;
@@ -35,17 +34,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import org.tritania.stables.wrappers.*;
-
-public class Race implements Serializable
+public class Checkpoint implements Serializable
 {
-	private Checkpoint start;
-	private ArrayList<Checkpoint> route;
-	private ArrayList<Player> members;
-	
-    public Race(Player player, Checkpoint start)
+    public Checkpoint(Player player, Location location)
     {
-		
+
     }
 }
 
