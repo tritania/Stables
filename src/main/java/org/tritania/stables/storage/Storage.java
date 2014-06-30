@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import org.bukkit.permissions.PermissibleBase;
 import org.bukkit.command.Command;
@@ -125,26 +127,28 @@ public class Storage implements Serializable
 
     public void loadPlayers()
     {
-        Player[] playersSave = Bukkit.getServer().getOnlinePlayers();
-        for (Player play : playersSave)
+        Collection<? extends Player> playersSave = Bukkit.getOnlinePlayers();
+        for (Iterator iterator = playersSave.iterator(); iterator.hasNext();) 
         {
-            if (check(play))
+			Player player = (Player) iterator.next();
+            if (check(player))
             {
-                loadPlayer(play);
+                loadPlayer(player);
             }
-        }
+		}
     }
 
     public void savePlayers()
     {
-        Player[] playersSave = Bukkit.getOnlinePlayers();
-        for (Player play : playersSave)
+		Collection<? extends Player> playersSave = Bukkit.getOnlinePlayers();
+        for (Iterator iterator = playersSave.iterator(); iterator.hasNext();) 
         {
-            if (check(play))
+			Player player = (Player) iterator.next();
+            if (check(player))
             {
-                savePlayer(play, st.horsehomes.getStableObj(play));
-                st.horsehomes.removePlayerStable(play);
+                savePlayer(player, st.horsehomes.getStableObj(player));
+                st.horsehomes.removePlayerStable(player);
             }
-        }
+		}
     }
 }
