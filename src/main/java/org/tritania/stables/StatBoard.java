@@ -47,12 +47,12 @@ import org.tritania.stables.wrappers.Race;
 
 import static org.bukkit.entity.Horse.*;
 
-import net.minecraft.server.v1_7_R3.AttributeInstance;
-import net.minecraft.server.v1_7_R3.AttributeModifier;
-import net.minecraft.server.v1_7_R3.EntityLiving;
-import net.minecraft.server.v1_7_R3.EntityInsentient;
-import net.minecraft.server.v1_7_R3.GenericAttributes;
-import org.bukkit.craftbukkit.v1_7_R3.entity.CraftLivingEntity;
+import net.minecraft.server.v1_7_R4.AttributeInstance;
+import net.minecraft.server.v1_7_R4.AttributeModifier;
+import net.minecraft.server.v1_7_R4.EntityLiving;
+import net.minecraft.server.v1_7_R4.EntityInsentient;
+import net.minecraft.server.v1_7_R4.GenericAttributes;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftLivingEntity;
 
 public class StatBoard
 {

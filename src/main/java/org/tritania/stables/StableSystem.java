@@ -85,7 +85,7 @@ public class StableSystem implements Serializable
         UUID playerId = player.getUniqueId();
         String local = location.getWorld().getName() + "," + String.valueOf(location.getX()) + "," + String.valueOf(location.getY()) + "," + String.valueOf(location.getZ());
         Stable stable = stablelocations.get(playerId);
-        stable.addStable(name, local);
+        stable.addStable(name, local); //
     }
 
     public Location getStable(Player player, String name)

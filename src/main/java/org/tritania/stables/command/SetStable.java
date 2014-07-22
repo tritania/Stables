@@ -59,7 +59,7 @@ public class SetStable implements CommandExecutor
                 String name = args[0].toLowerCase();
                 ht.horsehomes.hasStable(player);
                 Location stable = player.getLocation();
-                ht.horsehomes.updateStable(player, stable, name);
+                ht.horsehomes.updateStable(player, stable, name); //*
                 Message.info(sender, "Stable " + name + " set!");
             }
             else
