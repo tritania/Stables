@@ -31,18 +31,11 @@ import java.util.UUID;
 
 public class Stable implements Serializable
 {
-    public HashMap<String, String> stableList = new HashMap<String, String>();
+    private HashMap<String, String> stableList = new HashMap<String, String>();
 
     public boolean checkStable(String name)
     {
-        if(stableList.containsKey(name))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return stableList.containsKey(name);
     }
 
     public String getLocation(String name)
