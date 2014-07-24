@@ -16,6 +16,7 @@ A Bukkit plugin that adds more features to horses on Minecraft multiplayer serve
 ## Permissions ##
 * stables.teleport        Players with this permission can teleport while on their horse
 * stables.spawn           Players with this permission can spawn horses with /hspawn
+* stables.admin           Gives full access to all features, overides the config
 
 ## Configuration ##
 These values are set to false by default to enable them set them to true
