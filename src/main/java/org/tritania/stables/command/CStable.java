@@ -75,10 +75,12 @@ public class CStable implements CommandExecutor
                     Horse horse = (Horse) vech;
                     vech.eject();
 
-                    Message.info(sender, "Returning your horse home");
+                    Message.info(sender, "Returning you and your horse home");
 
                     Location location = ht.horsehomes.getStable(player, args[0]);
                     World world = location.getWorld();
+                    
+                    player.teleport(location);
 
                     Variant vart = horse.getVariant();
                     Color col = horse.getColor();
@@ -121,7 +123,7 @@ public class CStable implements CommandExecutor
                     else
                         horse.setCustomNameVisible(true);
                         
-                    horse.setPassenger(player);
+                    //horse.setPassenger(player);
                 }
                 
                 else if (ht.horsehomes.check(player, args[0].toLowerCase()))
