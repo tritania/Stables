@@ -40,12 +40,12 @@ import org.tritania.stables.util.Message;
 
 import static org.bukkit.entity.Horse.*;
 
-import net.minecraft.server.v1_7_R4.AttributeInstance;
-import net.minecraft.server.v1_7_R4.AttributeModifier;
-import net.minecraft.server.v1_7_R4.EntityLiving;
-import net.minecraft.server.v1_7_R4.EntityInsentient;
-import net.minecraft.server.v1_7_R4.GenericAttributes;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftLivingEntity;
+import net.minecraft.server.v1_8_R1.AttributeInstance;
+import net.minecraft.server.v1_8_R1.AttributeModifier;
+import net.minecraft.server.v1_8_R1.EntityLiving;
+import net.minecraft.server.v1_8_R1.EntityInsentient;
+import net.minecraft.server.v1_8_R1.GenericAttributes;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftLivingEntity;
 /*horsed Imports*/
 
 public class CStable implements CommandExecutor
@@ -68,6 +68,62 @@ public class CStable implements CommandExecutor
                 {
                     Message.info(player, ht.horsehomes.getStableNames(player));
                 }
+                
+                else if (ht.horsehomes.check(player, args[0].toLowerCase()) && args.length == 2 && args[1].toLowerCase().equals("with"))
+                {
+                    Entity vech = player.getVehicle();
+                    Horse horse = (Horse) vech;
+                    vech.eject();
+
+                    Message.info(sender, "Returning your horse home");
+
+                    Location location = ht.horsehomes.getStable(player, args[0]);
+                    World world = location.getWorld();
+
+                    Variant vart = horse.getVariant();
+                    Color col = horse.getColor();
+                    Style sty = horse.getStyle();
+                    int dom = horse.getDomestication();
+                    int life = horse.getTicksLived();
+                    ItemStack arm = horse.getInventory().getArmor();
+                    ItemStack saddle = horse.getInventory().getSaddle();
+                    double ju = horse.getJumpStrength();
+                    double health = horse.getMaxHealth();
+                    String name = horse.getCustomName();
+
+                    AttributeInstance preattributes = ((EntityInsentient)((CraftLivingEntity)horse).getHandle()).getAttributeInstance(GenericAttributes.d);
+                    double speed = preattributes.getValue();
+
+                    horse.remove();
+
+                    Chunk stch = location.getChunk();
+                    stch.load();
+
+                    horse = world.spawn(location, Horse.class);
+                    horse.setColor(col);
+                    horse.setDomestication(dom);
+                    horse.setVariant(vart);
+                    horse.setStyle(sty);
+                    horse.setTicksLived(life);
+                    horse.setTamed(true);
+                    horse.getInventory().setSaddle(saddle);
+                    horse.getInventory().setArmor(arm);
+                    horse.setJumpStrength(ju);
+                    horse.setMaxHealth(health);
+                    horse.setAdult();
+                    horse.setCustomName(name);
+
+                    AttributeInstance postattributes = ((EntityInsentient)((CraftLivingEntity)horse).getHandle()).getAttributeInstance(GenericAttributes.d);
+                    postattributes.setValue(speed);
+
+                    if (name == null || name.equals("Horse"))
+                        horse.setCustomNameVisible(false);
+                    else
+                        horse.setCustomNameVisible(true);
+                        
+                    horse.setPassenger(player);
+                }
+                
                 else if (ht.horsehomes.check(player, args[0].toLowerCase()))
                 {
                     Entity vech = player.getVehicle();
@@ -120,6 +176,7 @@ public class CStable implements CommandExecutor
                     else
                         horse.setCustomNameVisible(true);
                 }
+               
                 else
                 {
                     Message.info(sender, "No such home");
