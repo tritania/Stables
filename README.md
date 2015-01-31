@@ -9,7 +9,7 @@ A Bukkit plugin that adds more features to horses on Minecraft multiplayer serve
 * /haccept              Accepts any pending teleportation requests
 * /hdeny                Denies any pending teleportation requests
 * /setstable            allowing a bed type spawn for the horse
-* /stable               teleports only the horse back to the stable location
+* /stable               teleports only the horse back to the stable location adding 'with' after the stable name will teleport the player aswell
 * /delstable            deletes a stable
 * /hspawn               creates a horse to the given parameters
 
